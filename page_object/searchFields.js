@@ -19,9 +19,12 @@ var searchCommands = {
             .click('@frontPageSearchBar')
             .waitForElementVisible('@origin', timeout)
             .click('@origin');
+        this.api.pause(2000);
         this.waitForElementVisible('@searchOrigin', timeout)
             .clearValue('@searchOrigin')
             .setValue('@searchOrigin', this.api.Keys.SPACE)
+            .setValue('@searchOrigin', '\b')
+            .setValue('@searchOrigin', '')
             .waitForElementVisible("@searchResultCurrentLocation", timeout)
             .click("@searchResultCurrentLocation");
 
