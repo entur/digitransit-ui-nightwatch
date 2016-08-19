@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = {
-    "@tags": ["itinerary"],
+    tags: ["itinerary", "skip"], // NRP-549 needs to find and click correct suggested item.
     'Origin and destination exists in instructions if suggestion is chosen': function(browser) {
         var browser = browser.url(browser.launch_url);
 
