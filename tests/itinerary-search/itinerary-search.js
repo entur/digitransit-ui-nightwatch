@@ -6,7 +6,7 @@ module.exports = {
         var browser = browser.url(browser.launch_url);
 
         var searchFields = browser.page.searchFields();
-        searchFields.itinerarySearch("Hausmanns gate", "Malerhaugveien 28, Oslo");
+        searchFields.itinerarySearch("Hausmanns gate", "Malerhaugveien 28");
 
         var itinerarySummary = browser.page.itinerarySummary();
         itinerarySummary.waitForFirstItineraryRow();
@@ -15,7 +15,7 @@ module.exports = {
         var itineraryInstructions = browser.page.itineraryInstructions();
         itineraryInstructions.waitForFirstItineraryInstructionColumn();
         itineraryInstructions.verifyOrigin("Hausmanns gate, Oslo");
-        itineraryInstructions.verifyDestination("Malerhaugveien 28, Oslo");
+        itineraryInstructions.verifyDestination("Malerhaugveien 28");
         browser.end();
     },
     'From Hausmanns gate to Ula nord': function(browser) {

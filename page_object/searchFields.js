@@ -1,17 +1,27 @@
 'use strict'
 
 var searchCommands = {
-    setOrigin: function(origin) {
+    openFrontPageSearchBar: function() {
+        return this.waitForElementVisible('@frontPageSearchBar', this.api.globals.elementVisibleTimeout)
+            .click('@frontPageSearchBar');
+    },
+    enterSearchText: function(tabSelector, inputSelector, searchText) {
         var timeout = this.api.globals.elementVisibleTimeout;
-        this.waitForElementVisible('@frontPageSearchBar', timeout)
-            .click('@frontPageSearchBar')
-            .waitForElementVisible('@origin', timeout)
-            .click('@origin')
-            .waitForElementVisible('@searchOrigin', timeout)
-            .clearValue('@searchOrigin')
-            .setValue('@searchOrigin', origin);
+        return this.waitForElementVisible(tabSelector, timeout)
+            .click(tabSelector)
+            .waitForElementVisible(inputSelector, timeout)
+            .clearValue(inputSelector)
+            .setValue(inputSelector, searchText);
+    },
+    setDestination: function(destination) {
+        this.waitForElementVisible('@destination', timeout)
+            .click('@destination');
 
-        return this;
+        this.waitForElementVisible('@searchDestination', timeout);
+
+        this.clearValue('@searchDestination');
+
+        return this.setValue('@searchDestination', destination);
     },
     useCurrentLocationInOrigin: function(origin) {
         var timeout = this.api.globals.elementVisibleTimeout;
@@ -29,62 +39,19 @@ var searchCommands = {
 
         return this;
     },
-    enterKeyOrigin: function() {
-        this.api.pause(1000);
-        return this.setValue('@searchOrigin', this.api.Keys.ENTER);
-    },
-    setDestination: function(destination) {
-        var timeout = this.api.globals.elementVisibleTimeout;
-        return this.waitForElementVisible('@frontPageSearchBar', timeout)
-            .click('@frontPageSearchBar')
-            .waitForElementVisible('@destination', timeout)
-            .click('@destination')
-            .waitForElementVisible('@searchDestination', timeout)
-            .setValue('@searchDestination', destination);
-    },
-    chooseDestination: function(destination) {
+    chooseSuggestion: function(text, tabNumber) {
+        /* Keep in mind that there are three search tabs rendered with auto whatever suggestions: origin, destination and stop/route search.
+         * These lists does not have unique identifiers.
+         */
+        let xpath = `(//*[@id='react-whatever-suggest'])[${tabNumber}]//*[contains(text(), "${text}")]`
 
-        let xpath = "//span[contains(text(), '" + destination + "')]";
-
-
-
-        this.api.useXpath();
-        this.api.waitForElementPresent(xpath, this.api.globals.elementVisibleTimeout);
-
-        this.api.execute(function(destination) {
-          console.log(document);
-
-          var suggestions = document.getElementsByClassName("search-result");
-          console.log("Found " + suggestions.length + " suggestions");
-          for (var i = 0; i < suggestions.length; i++) {
-            // console.log("Comparing " + suggestions[i].innerText);
-            if(suggestions[i].innerText.indexOf(destination) >= 0) {
-              console.log("Found it. Will click it");
-              suggestions[i].click();
-              suggestions[i].parentElement.click();
-              console.log(suggestions[i].parentElement);
-              
-              var e = document.createEvent('HTMLEvents');
-
-              e.initEvent(suggestions[i], 'mousedown', false, true);
-              el.dispatchEvent(e);
-
-              break;
-            }
-          }
-        }, [destination]);
-
-        this.api.useCss();
-        return this;
-
-    },
-    itinerarySearch: function(origin, destination) {
-        return this.setOrigin(origin)
-            .enterKeyOrigin()
-            .setDestination(destination)
-            .chooseDestination(destination);
+        return this.api.useXpath()
+            .waitForElementVisible(xpath, this.api.globals.elementVisibleTimeout)
+            .click(xpath)
+            .useCss();
     },
     setSearch: function(search) {
+        // Search for stops and routes. Third tab.
         var timeout = this.api.globals.elementVisibleTimeout;
         this.waitForElementVisible('@frontPageSearchBar', timeout)
             .click('@frontPageSearchBar')
@@ -95,6 +62,14 @@ var searchCommands = {
 
         this.api.pause(1000);
         return this.setValue('@searchInput', this.api.Keys.ENTER);
+    },
+    itinerarySearch: function(origin, destination) {
+      this.openFrontPageSearchBar()
+            .enterSearchText("@origin", "@searchOrigin", origin)
+            .chooseSuggestion(origin, 1);
+      this.openFrontPageSearchBar()
+      .enterSearchText("@destination", "@searchDestination", destination)
+      .chooseSuggestion(destination, 2);
     }
 };
 
@@ -126,7 +101,7 @@ module.exports = {
             selector: "#search"
         },
         searchResultCurrentLocation: {
-          selector: ".search-result.CurrentLocation"
+            selector: ".search-result.CurrentLocation"
         }
     }
 };
