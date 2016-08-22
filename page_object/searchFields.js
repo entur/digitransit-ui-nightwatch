@@ -1,17 +1,27 @@
 'use strict'
 
 var searchCommands = {
-    setOrigin: function(origin) {
+    openFrontPageSearchBar: function() {
+        return this.waitForElementVisible('@frontPageSearchBar', this.api.globals.elementVisibleTimeout)
+            .click('@frontPageSearchBar');
+    },
+    enterSearchText: function(tabSelector, inputSelector, searchText) {
         var timeout = this.api.globals.elementVisibleTimeout;
-        this.waitForElementVisible('@frontPageSearchBar', timeout)
-            .click('@frontPageSearchBar')
-            .waitForElementVisible('@origin', timeout)
-            .click('@origin')
-            .waitForElementVisible('@searchOrigin', timeout)
-            .clearValue('@searchOrigin')
-            .setValue('@searchOrigin', origin);
+        return this.waitForElementVisible(tabSelector, timeout)
+            .click(tabSelector)
+            .waitForElementVisible(inputSelector, timeout)
+            .clearValue(inputSelector)
+            .setValue(inputSelector, searchText);
+    },
+    setDestination: function(destination) {
+        this.waitForElementVisible('@destination', timeout)
+            .click('@destination');
 
-        return this;
+        this.waitForElementVisible('@searchDestination', timeout);
+
+        this.clearValue('@searchDestination');
+
+        return this.setValue('@searchDestination', destination);
     },
     useCurrentLocationInOrigin: function(origin) {
         var timeout = this.api.globals.elementVisibleTimeout;
@@ -29,30 +39,19 @@ var searchCommands = {
 
         return this;
     },
-    enterKeyOrigin: function() {
-        this.api.pause(1000);
-        return this.setValue('@searchOrigin', this.api.Keys.ENTER);
-    },
-    setDestination: function(destination) {
-        var timeout = this.api.globals.elementVisibleTimeout;
-        return this.waitForElementVisible('@frontPageSearchBar', timeout)
-            .click('@frontPageSearchBar')
-            .waitForElementVisible('@destination', timeout)
-            .click('@destination')
-            .waitForElementVisible('@searchDestination', timeout)
-            .setValue('@searchDestination', destination);
-    },
-    enterKeyDestination: function() {
-        this.api.pause(1000);
-        return this.setValue('@searchDestination', this.api.Keys.ENTER);
-    },
-    itinerarySearch: function(origin, destination) {
-        return this.setOrigin(origin)
-            .enterKeyOrigin()
-            .setDestination(destination)
-            .enterKeyDestination();
+    chooseSuggestion: function(text, tabNumber) {
+        /* Keep in mind that there are three search tabs rendered with auto whatever suggestions: origin, destination and stop/route search.
+         * These lists does not have unique identifiers.
+         */
+        let xpath = `(//*[@id='react-whatever-suggest'])[${tabNumber}]//*[contains(text(), "${text}")]`
+
+        return this.api.useXpath()
+            .waitForElementVisible(xpath, this.api.globals.elementVisibleTimeout)
+            .click(xpath)
+            .useCss();
     },
     setSearch: function(search) {
+        // Search for stops and routes. Third tab.
         var timeout = this.api.globals.elementVisibleTimeout;
         this.waitForElementVisible('@frontPageSearchBar', timeout)
             .click('@frontPageSearchBar')
@@ -63,6 +62,14 @@ var searchCommands = {
 
         this.api.pause(1000);
         return this.setValue('@searchInput', this.api.Keys.ENTER);
+    },
+    itinerarySearch: function(origin, destination) {
+      this.openFrontPageSearchBar()
+            .enterSearchText("@origin", "@searchOrigin", origin)
+            .chooseSuggestion(origin, 1);
+      this.openFrontPageSearchBar()
+      .enterSearchText("@destination", "@searchDestination", destination)
+      .chooseSuggestion(destination, 2);
     }
 };
 
@@ -94,7 +101,7 @@ module.exports = {
             selector: "#search"
         },
         searchResultCurrentLocation: {
-          selector: ".search-result.CurrentLocation"
+            selector: ".search-result.CurrentLocation"
         }
     }
 };
