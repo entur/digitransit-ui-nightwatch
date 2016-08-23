@@ -17,14 +17,12 @@ module.exports = {
     },
     'From Hausmanns gate to Malerhaugveien 28': function(browser) {
         browser.page.itinerarySearch()
-          .executeItinerarySearchAndVerify("Hausmanns gate", "Malerhaugveien 28",
-            "Hausmanns gate, Oslo", "Malerhaugveien 28")
+          .executeItinerarySearchAndVerify("Hausmanns gate", "Malerhaugveien 28")
           .api.end();
     },
     'From Hausmanns gate to Ula nord': function(browser) {
       browser.page.itinerarySearch()
-        .executeItinerarySearchAndVerify("Hausmanns gate", "Ula nord",
-          "Hausmanns gate, Oslo", "Ula nord, Larvik")
+        .executeItinerarySearchAndVerify("Hausmanns gate", "Ula nord")
         .api.end();
     },
     'From Røros skole to Festplassen, Bergen': function(browser) {

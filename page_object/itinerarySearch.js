@@ -2,8 +2,7 @@
 
 // Not really a page object, but it uses multiple page objects.
 var commands = {
-  executeItinerarySearchAndVerify: function(origin, destination,
-      verifyOrigin = origin, verifyDestination = destination) {
+  executeItinerarySearchAndVerify: function(origin, destination) {
     return this.api.page.searchFields()
           .itinerarySearch(origin, destination)
         .api.page.itinerarySummary()
@@ -11,8 +10,8 @@ var commands = {
           .chooseFirstItinerarySuggestion()
         .api.page.itineraryInstructions()
           .waitForFirstItineraryInstructionColumn()
-          .verifyOrigin(verifyOrigin)
-          .verifyDestination(verifyDestination);
+          .verifyOrigin(origin)
+          .verifyDestination(destination);
   }
 };
 
