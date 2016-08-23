@@ -10,6 +10,7 @@ module.exports = {
 
         browser.page.searchFields()
             .useCurrentLocationInOrigin()
+            .openFrontPageSearchBar()
             .setDestination(destination)
             .chooseSuggestedDestination(destination);
 
