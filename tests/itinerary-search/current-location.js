@@ -6,11 +6,12 @@ module.exports = {
         var browser = browser.url(browser.launch_url)
             .setGeolocation(59.896442, 10.554464);
 
+        var destination = "Bryn stasjon";
 
         browser.page.searchFields()
             .useCurrentLocationInOrigin()
-            .setDestination("Bryn stasjon")
-            .enterKeyDestination();
+            .setDestination(destination)
+            .chooseSuggestedDestination(destination);
 
         browser.page.itinerarySummary()
             .waitForFirstItineraryRow();
