@@ -10,7 +10,7 @@ var commands = {
     },
     verifyDestination: function(destination) {
         this.api.useXpath()
-            .waitForElementVisible(`//div[@class='itinerary-leg-first-row' and contains(text(), ${destination})]`)
+            .waitForElementVisible(`//div[@class='itinerary-leg-first-row' and contains(text(), '${destination}')]`)
             .useCss();
         return this;
     }
