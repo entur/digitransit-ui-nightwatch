@@ -22,18 +22,16 @@ var searchCommands = {
     },
     useCurrentLocationInOrigin: function(origin) {
         var timeout = this.api.globals.elementVisibleTimeout;
-        this.openFrontPageSearchBar()
+        return this.openFrontPageSearchBar()
             .waitForElementVisible('@origin', timeout)
-            .click('@origin');
-        this.waitForElementVisible('@searchOrigin', timeout)
+            .click('@origin')
+            .waitForElementVisible('@searchOrigin', timeout)
             .clearValue('@searchOrigin')
             .setValue('@searchOrigin', this.api.Keys.SPACE)
             .setValue('@searchOrigin', '\b')
             .setValue('@searchOrigin', '')
             .waitForElementVisible("@searchResultCurrentLocation", timeout)
             .click("@searchResultCurrentLocation");
-
-        return this;
     },
     chooseSuggestion: function(text, tabNumber) {
         /* Keep in mind that there are three search tabs rendered with auto whatever suggestions: origin, destination and stop/route search.
@@ -41,10 +39,11 @@ var searchCommands = {
          */
         let xpath = `(//*[@id='react-whatever-suggest'])[${tabNumber}]//*[contains(text(), "${text}")]`
 
-        return this.api.useXpath()
+        this.api.useXpath()
             .waitForElementVisible(xpath, this.api.globals.elementVisibleTimeout)
             .click(xpath)
             .useCss();
+        return this;
     },
     chooseSuggestedDestination: function(destination) {
       return this.chooseSuggestion(destination, 2);
@@ -68,8 +67,8 @@ var searchCommands = {
     itinerarySearch: function(origin, destination) {
       this.openFrontPageSearchBar()
         .enterSearchText("@origin", "@searchOrigin", origin)
-        .chooseSuggestedOrigin(origin);
-      return this.openFrontPageSearchBar()
+        .chooseSuggestedOrigin(origin)
+        .openFrontPageSearchBar()
         .enterSearchText("@destination", "@searchDestination", destination)
         .chooseSuggestedDestination(destination);
     }
