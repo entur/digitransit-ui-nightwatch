@@ -2,14 +2,13 @@
 
 var searchCommands = {
     openFrontPageSearchBar: function() {
-        return this.waitForElementVisible('@frontPageSearchBar', this.api.globals.elementVisibleTimeout)
+        return this.waitForElementVisible('@frontPageSearchBar')
             .click('@frontPageSearchBar');
     },
     enterSearchText: function(tabSelector, inputSelector, searchText) {
-        var timeout = this.api.globals.elementVisibleTimeout;
-        return this.waitForElementVisible(tabSelector, timeout)
+        return this.waitForElementVisible(tabSelector)
             .click(tabSelector)
-            .waitForElementVisible(inputSelector, timeout)
+            .waitForElementVisible(inputSelector)
             .clearValue(inputSelector)
             .setValue(inputSelector, searchText);
     },
@@ -22,16 +21,15 @@ var searchCommands = {
           .enterSearchText("@origin", "@searchOrigin", origin);
     },
     useCurrentLocationInOrigin: function(origin) {
-        var timeout = this.api.globals.elementVisibleTimeout;
         return this.openFrontPageSearchBar()
-            .waitForElementVisible('@origin', timeout)
+            .waitForElementVisible('@origin')
             .click('@origin')
-            .waitForElementVisible('@searchOrigin', timeout)
+            .waitForElementVisible('@searchOrigin')
             .clearValue('@searchOrigin')
             .setValue('@searchOrigin', this.api.Keys.SPACE)
             .setValue('@searchOrigin', '\b')
             .setValue('@searchOrigin', '')
-            .waitForElementVisible("@searchResultCurrentLocation", timeout)
+            .waitForElementVisible("@searchResultCurrentLocation")
             .click("@searchResultCurrentLocation");
     },
     chooseSuggestion: function(text, tabNumber) {
@@ -41,7 +39,7 @@ var searchCommands = {
         let xpath = `(//*[@id='react-whatever-suggest'])[${tabNumber}]//*[contains(text(), "${text}")]`
 
         this.api.useXpath()
-            .waitForElementVisible(xpath, this.api.globals.elementVisibleTimeout)
+            .waitForElementVisible(xpath)
             .click(xpath)
             .useCss();
         return this;
@@ -54,11 +52,10 @@ var searchCommands = {
     },
     setSearch: function(search) {
         // Search for stops and routes. Third tab.
-        var timeout = this.api.globals.elementVisibleTimeout;
         this.openFrontPageSearchBar()
-            .waitForElementVisible('@search', timeout)
+            .waitForElementVisible('@search')
             .click('@search')
-            .waitForElementVisible('@searchInput', timeout)
+            .waitForElementVisible('@searchInput')
             .setValue('@searchInput', search);
 
         this.api.pause(1000);

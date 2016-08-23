@@ -5,7 +5,7 @@ var commands = {
         return this.click("@anyBusStopMarker");
     },
     waitForPopupPaneVisible: function() {
-        return this.waitForElementVisible("@popupPane", this.api.globals.itinerarySearchTimeout);
+        return this.waitForElementVisible("@popupPane");
     }
 }
 

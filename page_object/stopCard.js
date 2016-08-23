@@ -5,10 +5,10 @@ var commands = {
         return this.click("@anyStopMarker");
     },
     waitForDepartureVisible: function() {
-        return this.waitForElementVisible("@departure", this.api.globals.itinerarySearchTimeout);
+        return this.waitForElementVisible("@departure");
     },
     expectCardHeader: function(expected) {
-        this.waitForElementVisible("@cardHeader", this.api.globals.itinerarySearchTimeout);
+        this.waitForElementVisible("@cardHeader");
         return this.assert.containsText("@cardHeader", expected);
     }
 }

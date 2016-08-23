@@ -13,7 +13,7 @@
             "silent": true,
             "globals": {
                 "itinerarySearchTimeout": 21000,
-                "elementVisibleTimeout": 10000
+                "waitForConditionTimeout": 10000
             },
             "screenshots": {
                 "enabled": true,

@@ -2,7 +2,7 @@
 
 var commands = {
     zoomIn: function(times) {
-        this.waitForElementVisible("@zoomIn", this.api.globals.itinerarySearchTimeout);
+        this.waitForElementVisible("@zoomIn");
         for (var i = 0; i < times; i++) {
             this.click("@zoomIn");
         }

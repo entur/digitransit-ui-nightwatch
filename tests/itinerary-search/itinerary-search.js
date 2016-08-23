@@ -49,8 +49,5 @@ module.exports = {
             .verifyOrigin("Festplasse")
             .verifyDestination("Scandic Alta")
           .api.end();
-    },
-    searchAndVerify: function(browser) {
-      
     }
 }

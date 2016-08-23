@@ -3,18 +3,17 @@
 
 var commands = {
     openFavouritesPage: function() {
-        this.waitForElementVisible("@favouritePaneSelect", this.api.globals.elementVisibleTimeout);
+        this.waitForElementVisible("@favouritePaneSelect");
         return this.click("@favouritePaneSelect");
     },
     addFavourite: function() {
-        this.waitForElementVisible("@newFavouriteButtonContent", this.api.globals.elementVisibleTimeout);
+        this.waitForElementVisible("@newFavouriteButtonContent");
         return this.click("@newFavouriteButtonContent");
     },
     enterAddress: function(addressSearch) {
-        var timeout = this.api.globals.elementVisibleTimeout;
-        this.waitForElementVisible("@addressPlaceholdeNoSelect", timeout);
+        this.waitForElementVisible("@addressPlaceholdeNoSelect");
         this.click("@addressPlaceholdeNoSelect");
-        this.waitForElementVisible("@searchFavourite", timeout);
+        this.waitForElementVisible("@searchFavourite");
         this.setValue("@searchFavourite", addressSearch);
         this.api.pause(1000);
         return this.setValue("@searchFavourite", this.api.Keys.ENTER);
@@ -38,12 +37,12 @@ var commands = {
     },
     verifyFirstHeader: function(header) {
         this.openFavouritesPage();
-        this.waitForElementVisible("@favouriteLocationHeader", this.api.globals.elementVisibleTimeout);
+        this.waitForElementVisible("@favouriteLocationHeader");
         return this.assert.containsText("@favouriteLocationHeader", header);
     },
     verifyFavouriteInSearchResult: function(favouriteName) {
         this.api.useXpath();
-        this.waitForElementPresent("//*/li[@class=\"react-autowhatever__item\"]/span[text()=\"" + favouriteName + "\"]", this.api.globals.elementVisibleTimeout);
+        this.waitForElementPresent("//*/li[@class=\"react-autowhatever__item\"]/span[text()=\"" + favouriteName + "\"]");
         this.api.useCss();
     }
 }

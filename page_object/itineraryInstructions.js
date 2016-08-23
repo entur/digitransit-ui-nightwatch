@@ -2,10 +2,10 @@
 
 var commands = {
     waitForFirstItineraryInstructionColumn: function() {
-        return this.waitForElementVisible("@itineraryInstructionColumn", this.api.globals.itinerarySearchTimeout);
+        return this.waitForElementVisible("@itineraryInstructionColumn");
     },
     verifyOrigin: function(origin) {
-        return this.waitForElementVisible("@itineraryOrigin", this.api.globals.itinerarySearchTimeout)
+        return this.waitForElementVisible("@itineraryOrigin")
             .assert.containsText("@itineraryOrigin", origin);
     },
     verifyDestination: function(destination) {

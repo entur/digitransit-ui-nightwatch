@@ -2,13 +2,12 @@
 
 var commands = {
     openNearbyRoutes: function() {
-        this.waitForElementVisible("@nearbyRoutesPaneSelect", this.api.globals.elementVisibleTimeout);
+        this.waitForElementVisible("@nearbyRoutesPaneSelect");
         return this.click("@nearbyRoutesPaneSelect");
     },
     waitForRoutes: function() {
-        var timeout = this.api.globals.elementVisibleTimeout;
-        this.waitForElementVisible("@scrollableRoutes", timeout);
-        return this.waitForElementVisible("@routeDestination", timeout);
+        this.waitForElementVisible("@scrollableRoutes");
+        return this.waitForElementVisible("@routeDestination");
     }
 }
 
