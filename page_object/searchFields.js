@@ -14,10 +14,10 @@ var searchCommands = {
             .setValue(inputSelector, searchText);
     },
     setDestination: function(destination) {
-        this.waitForElementVisible('@destination', timeout)
+        this.waitForElementVisible('@destination', this.api.globals.elementVisibleTimeout)
             .click('@destination');
 
-        this.waitForElementVisible('@searchDestination', timeout);
+        this.waitForElementVisible('@searchDestination', this.api.globals.elementVisibleTimeout);
 
         this.clearValue('@searchDestination');
 
