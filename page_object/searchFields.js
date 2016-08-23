@@ -67,7 +67,7 @@ var searchCommands = {
         return this;
     },
     itinerarySearch: function(origin, destination) {
-        this.setOrigin(origin)
+        return this.setOrigin(origin)
             .chooseSuggestedOrigin(origin)
             .setDestination(destination)
             .chooseSuggestedDestination(destination);
