@@ -6,7 +6,7 @@ module.exports = {
         var browser = browser.url(browser.launch_url);
 
         var searchFields = browser.page.searchFields();
-        searchFields.itinerarySearch("Oslo Lufthavn", "Trondeim lufthavn Værnes");
+        searchFields.itinerarySearch("Oslo Lufthavn", "Trondheim lufthavn Værnes");
 
         var customizeSearch = browser.page.customizeSearch();
         customizeSearch.clickCanvasToggle();
