@@ -25,8 +25,7 @@ var searchCommands = {
     },
     useCurrentLocationInOrigin: function(origin) {
         var timeout = this.api.globals.elementVisibleTimeout;
-        this.waitForElementVisible('@frontPageSearchBar', timeout)
-            .click('@frontPageSearchBar')
+        this.openFrontPageSearchBar()
             .waitForElementVisible('@origin', timeout)
             .click('@origin');
         this.waitForElementVisible('@searchOrigin', timeout)
@@ -50,26 +49,32 @@ var searchCommands = {
             .click(xpath)
             .useCss();
     },
+    chooseSuggestedDestination: function(destination) {
+      return this.chooseSuggestion(destination, 2);
+    },
+    chooseSuggestedOrigin: function(origin) {
+      return this.chooseSuggestion(origin, 1);
+    },
     setSearch: function(search) {
         // Search for stops and routes. Third tab.
         var timeout = this.api.globals.elementVisibleTimeout;
-        this.waitForElementVisible('@frontPageSearchBar', timeout)
-            .click('@frontPageSearchBar')
+        this.openFrontPageSearchBar()
             .waitForElementVisible('@search', timeout)
             .click('@search')
             .waitForElementVisible('@searchInput', timeout)
             .setValue('@searchInput', search);
 
         this.api.pause(1000);
+        // It does not necesarry select the correct suggested stop/route
         return this.setValue('@searchInput', this.api.Keys.ENTER);
     },
     itinerarySearch: function(origin, destination) {
       this.openFrontPageSearchBar()
-            .enterSearchText("@origin", "@searchOrigin", origin)
-            .chooseSuggestion(origin, 1);
-      this.openFrontPageSearchBar()
-      .enterSearchText("@destination", "@searchDestination", destination)
-      .chooseSuggestion(destination, 2);
+        .enterSearchText("@origin", "@searchOrigin", origin)
+        .chooseSuggestedOrigin(origin);
+      return this.openFrontPageSearchBar()
+        .enterSearchText("@destination", "@searchDestination", destination)
+        .chooseSuggestedDestination(destination);
     }
 };
 
