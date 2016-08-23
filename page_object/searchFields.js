@@ -14,10 +14,12 @@ var searchCommands = {
             .setValue(inputSelector, searchText);
     },
     setDestination: function(destination) {
-        return this.enterSearchText("@destination", "@searchDestination", destination);
+        return this.openFrontPageSearchBar()
+          .enterSearchText("@destination", "@searchDestination", destination);
     },
     setOrigin: function(origin) {
-        return this.enterSearchText("@origin", "@searchOrigin", origin);
+        return this.openFrontPageSearchBar()
+          .enterSearchText("@origin", "@searchOrigin", origin);
     },
     useCurrentLocationInOrigin: function(origin) {
         var timeout = this.api.globals.elementVisibleTimeout;
@@ -65,10 +67,8 @@ var searchCommands = {
         return this;
     },
     itinerarySearch: function(origin, destination) {
-        this.openFrontPageSearchBar()
-            .setOrigin(origin)
+        this.setOrigin(origin)
             .chooseSuggestedOrigin(origin)
-            .openFrontPageSearchBar()
             .setDestination(destination)
             .chooseSuggestedDestination(destination);
     }
