@@ -14,14 +14,11 @@ var searchCommands = {
             .setValue(inputSelector, searchText);
     },
     setDestination: function(destination) {
-        this.waitForElementVisible('@destination', this.api.globals.elementVisibleTimeout)
-            .click('@destination');
-
-        this.waitForElementVisible('@searchDestination', this.api.globals.elementVisibleTimeout);
-
-        this.clearValue('@searchDestination');
-
-        return this.setValue('@searchDestination', destination);
+        return this.waitForElementVisible('@destination', this.api.globals.elementVisibleTimeout)
+            .click('@destination')
+            .waitForElementVisible('@searchDestination', this.api.globals.elementVisibleTimeout)
+            .clearValue('@searchDestination')
+            .setValue('@searchDestination', destination);
     },
     useCurrentLocationInOrigin: function(origin) {
         var timeout = this.api.globals.elementVisibleTimeout;
