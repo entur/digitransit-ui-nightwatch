@@ -14,6 +14,7 @@
     "type": "git",
     "url": "git@github.com:rutebanken/digitransit-ui-nightwatch.git"
   },
+  "license": "MIT",
   "author": "Cristoffer Solem <cristoffer.solem@gmail.com>",
   "homepage": "https://github.com/rutebanken/digitransit-ui-nightwatch",
   "dependencies": {
