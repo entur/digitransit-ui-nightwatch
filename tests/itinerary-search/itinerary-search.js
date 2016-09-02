@@ -34,5 +34,10 @@ module.exports = {
       browser.page.itinerarySearch()
         .executeItinerarySearchAndVerify("Festplassen", "Scandic Alta")
         .api.end();
+    },
+    'From Nakholmen to Aker brygge': function(browser) {
+      browser.page.itinerarySearch()
+        .executeItinerarySearchAndVerify("Nakholmen", "Aker brygge")
+        .api.end();
     }
 }
