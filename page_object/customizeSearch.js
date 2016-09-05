@@ -4,7 +4,12 @@ var modalities = ["bus", "tram", "rail", "subway", "ferry", "citybike", "air"];
 
 var commands = {
     clickCanvasToggle: function() {
-        return this.click("@canvasToggle");
+        return this.waitForElementVisible("@canvasToggle")
+          .click("@canvasToggle");
+    },
+    closeOffCanvas: function() {
+      return this.waitForElementVisible("@offCanvas")
+        .click("@offCanvas");
     },
     enableModality: function(modality) {
         var index;
@@ -23,6 +28,7 @@ var commands = {
                 });
             }
         }
+        return this;
     },
     disableAllModalitiesExcept: function(except) {
         for (var i in modalities) {
@@ -39,6 +45,7 @@ var commands = {
                 });
             }
         }
+        return this;
     },
     exists: function(selector, callback) {
         this.api.elements("css selector", selector, function(result) {
@@ -54,6 +61,7 @@ var commands = {
 module.exports = {
     commands: [commands],
     elements: {
-        canvasToggle: ".right-offcanvas-toggle"
+        canvasToggle: ".right-offcanvas-toggle",
+        offCanvas: ".offcanvas",
     }
 };

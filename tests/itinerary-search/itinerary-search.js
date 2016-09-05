@@ -5,6 +5,11 @@ module.exports = {
     beforeEach: function(browser) {
       browser.url(browser.launch_url);
     },
+    'From Oslo S to Arvesens veg 4G, Hamar': function(browser) {
+        browser.page.itinerarySearch()
+          .executeItinerarySearchWithModeAndVerify("Oslo S", "Arvesens veg 4G, Hamar", "rail")
+          .api.end();
+    },
     'From Sogstikollen 22B to Bjørvika': function(browser) {
         browser.page.itinerarySearch()
           .executeItinerarySearchAndVerify("Sogstikollen 22C, Frogn", "Bjørvika")

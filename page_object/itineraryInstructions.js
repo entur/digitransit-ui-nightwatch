@@ -13,6 +13,10 @@ var commands = {
             .waitForElementVisible(`//div[@class='itinerary-leg-first-row' and contains(text(), '${destination}')]`)
             .useCss();
         return this;
+    },
+    waitForItineraryLegOfType: function(mode) {
+      let selector = ".itinerary-instruction-column." + mode;
+      return this.waitForElementVisible(selector);
     }
 };
 
