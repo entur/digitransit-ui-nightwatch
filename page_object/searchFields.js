@@ -21,16 +21,21 @@ var searchCommands = {
           .enterSearchText("@origin", "@searchOrigin", origin);
     },
     useCurrentLocationInOrigin: function(origin) {
-        return this.openFrontPageSearchBar()
+        this.openFrontPageSearchBar()
             .waitForElementVisible('@origin')
             .click('@origin')
             .waitForElementVisible('@searchOrigin')
-            .clearValue('@searchOrigin')
-            .setValue('@searchOrigin', this.api.Keys.SPACE)
-            .setValue('@searchOrigin', '\b')
-            .setValue('@searchOrigin', '')
-            .waitForElementVisible("@searchResultCurrentLocation")
-            .click("@searchResultCurrentLocation");
+            .click('@searchOrigin');
+
+        // TODO: returns null value: this.api.getValue('@searchOrigin', function(result) {
+
+        for (let i = 0; i < 10; i++) {
+          // At the moment, the current way of emptying the input that works.
+          this.sendKeys('@searchOrigin', this.api.Keys.BACK_SPACE);
+        }
+        
+        return this.waitForElementVisible('@searchResultCurrentLocation')
+            .click('@searchResultCurrentLocation');
     },
     chooseSuggestion: function(text, tabNumber) {
         /* Keep in mind that there are three search tabs rendered with auto whatever suggestions: origin, destination and stop/route search.
