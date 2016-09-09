@@ -19,8 +19,11 @@ var commands = {
                 var client = this;
                 this.exists(".btn-bar > ." + modality, function(selector, found) {
                     if (!found) {
+                        // Disabled buttons does not have modality as class
                         console.log("activating modality " + modality);
-                        client.click(".btn-bar > .btn:nth-of-type(" + i + ")");
+                        let disabledButtonSelector =  ".btn-bar > .btn:nth-of-type(" + i + ")";
+                        client.waitForElementVisible(disabledButtonSelector);
+                        client.click(disabledButtonSelector);
                         return;
                     } else {
                         console.log("modality " + modality + " is already activated");
@@ -40,6 +43,8 @@ var commands = {
                 this.exists(selector, function(selector, found) {
                     if (found) {
                         console.log("Clicking " + selector);
+                        // Allthough it exists, we need to make sure it is visible as well.
+                        client.waitForElementVisible(selector);
                         client.click(selector);
                     }
                 });
