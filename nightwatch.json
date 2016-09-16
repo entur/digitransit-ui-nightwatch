@@ -28,7 +28,7 @@
             }
         },
         "beta": {
-            "launch_url": "https://beta.rutebanken.org?mock"
+            "launch_url": "https://www.dit.no?mock"
         },
         "local": {
             "launch_url": "http://localhost:8765/?mock"
