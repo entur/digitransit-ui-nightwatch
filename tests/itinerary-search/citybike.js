@@ -5,16 +5,10 @@ module.exports = {
     'CityBike in Trondheim': function(browser) {
         var browser = browser.url(browser.launch_url);
 
-        var searchFields = browser.page.searchFields();
-        searchFields.itinerarySearch("Nidareid 6", "Gløshaugveien 4");
-
-        var customizeSearch = browser.page.customizeSearch();
-        customizeSearch.clickCanvasToggle();
-        customizeSearch.disableAllModalitiesExcept("citybike");
-        customizeSearch.enableModality("citybike");
-
-        var itinerarySummary = browser.page.itinerarySummary();
-        itinerarySummary.waitForFirstItineraryRow();
+        browser.page.itinerarySearch()
+                .executeItinerarySearchWithModeAndVerify("Nidareid",
+                        "Gløshaugveien 4", "citybike")
+                .api.end();
 
         browser.end();
     }
