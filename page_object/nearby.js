@@ -8,6 +8,10 @@ var commands = {
     waitForRoutes: function() {
         this.waitForElementVisible("@scrollableRoutes");
         return this.waitForElementVisible("@routeDestination");
+    },
+    waitForRoutesWithRealtime: function() {
+        this.waitForElementVisible("@scrollableRoutes");
+        return this.waitForElementVisible("@realtime");
     }
 }
 
@@ -22,6 +26,9 @@ module.exports = {
         },
         routeDestination: {
             selector: ".route-destination"
+        },
+        realtime: {
+            selector: ".time .realtime"
         }
     }
 }
