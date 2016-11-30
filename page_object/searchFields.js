@@ -33,15 +33,13 @@ var searchCommands = {
           // At the moment, the current way of emptying the input that works.
           this.sendKeys('@searchOrigin', this.api.Keys.BACK_SPACE);
         }
-        
+
         return this.waitForElementVisible('@searchResultCurrentLocation')
             .click('@searchResultCurrentLocation');
     },
-    chooseSuggestion: function(text, tabNumber) {
-        /* Keep in mind that there are three search tabs rendered with auto whatever suggestions: origin, destination and stop/route search.
-         * These lists does not have unique identifiers.
-         */
-        let xpath = `(//*[@id='react-whatever-suggest'])[${tabNumber}]//*[contains(text(), "${text}")]`
+
+    chooseSuggestedDestination: function(destination) {
+        let xpath = `//*[@id='search-destination']`;
 
         this.api.useXpath()
             .waitForElementVisible(xpath)
@@ -49,11 +47,14 @@ var searchCommands = {
             .useCss();
         return this;
     },
-    chooseSuggestedDestination: function(destination) {
-        return this.chooseSuggestion(destination, 2);
-    },
     chooseSuggestedOrigin: function(origin) {
-        return this.chooseSuggestion(origin, 1);
+        let xpath = `//*[@id='search-origin']`;
+
+        this.api.useXpath()
+            .waitForElementVisible(xpath)
+            .click(xpath)
+            .useCss();
+        return this;
     },
     setSearch: function(search) {
         // Search for stops and routes. Third tab.

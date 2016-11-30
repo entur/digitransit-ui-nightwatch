@@ -2,7 +2,7 @@
 
 var commands = {
     waitForFirstItineraryRow: function() {
-        return this.waitForElementVisible("@firstItinerarySummaryRow", this.api.globals.itinerarySearchTimeout);
+        return this.waitForElementPresent("@firstItinerarySummaryRow", this.api.globals.itinerarySearchTimeout);
     },
     waitForItineraryRowOfType: function(modality) {
         return this.waitForElementVisible(".line ." + modality + ":nth-of-type(1)", this.api.globals.itinerarySearchTimeout);
@@ -15,6 +15,6 @@ var commands = {
 module.exports = {
     commands: [commands],
     elements: {
-        firstItinerarySummaryRow: ".itinerary-summary-row:nth-of-type(1)"
+        firstItinerarySummaryRow: ".Feature:nth-of-type(1)"
     }
 };
