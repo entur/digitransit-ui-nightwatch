@@ -15,6 +15,7 @@ var commands = {
 module.exports = {
     commands: [commands],
     elements: {
-        firstItinerarySummaryRow: ".Feature:nth-of-type(1)"
+        // The DOM is too loose, n-child or first-of-type does not work here.
+        firstItinerarySummaryRow: "div.search-result.Feature"
     }
 };

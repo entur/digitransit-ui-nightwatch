@@ -39,7 +39,7 @@ var searchCommands = {
     },
 
     chooseSuggestedDestination: function(destination) {
-        let xpath = `//*[@id='search-destination']`;
+        let xpath = `//input[@id='search-destination' and @value='${destination}']`;
 
         this.api.useXpath()
             .waitForElementVisible(xpath)
@@ -48,7 +48,7 @@ var searchCommands = {
         return this;
     },
     chooseSuggestedOrigin: function(origin) {
-        let xpath = `//*[@id='search-origin']`;
+        let xpath = `//input[@id='search-origin' and @value='${origin}']`;
 
         this.api.useXpath()
             .waitForElementVisible(xpath)
