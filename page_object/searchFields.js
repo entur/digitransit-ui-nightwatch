@@ -39,12 +39,7 @@ var searchCommands = {
     },
 
     chooseSuggestedDestination: function(destination) {
-
-      const index = destination.indexOf(',');
-      if (index > -1) {
-        destination = destination.substring(0, index);
-      }
-
+        destination = this.removeMunicipality(destination);
         let xpath = `//*[@id='search-destination']/..//p[contains(node(), '${destination}')]`;
 
         this.api.useXpath()
@@ -53,7 +48,15 @@ var searchCommands = {
             .useCss();
         return this;
     },
+    removeMunicipality: function(text) {
+      const index = text.indexOf(',');
+      if (index > -1) {
+        text = text.substring(0, index);
+      }
+      return text;
+    },
     chooseSuggestedOrigin: function(origin) {
+        origin = this.removeMunicipality(origin);
         let xpath = `//*[@id='search-origin']/..//p[contains(node(), '${origin}')][1]`;
 
         this.api.useXpath()
