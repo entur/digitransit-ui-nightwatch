@@ -16,10 +16,15 @@ var commands = {
         this.waitForElementPresent("@searchFavourite");
         this.setValue("@searchFavourite", addressSearch);
 
-        // TODO: do not use sleep!
-        this.api.pause(1000);
+        const addressWithoutMunicipality = addressSearch.substring(0, addressSearch.indexOf(","));
+        let xpath = `//p[contains(node(), '${addressWithoutMunicipality}') and @class='suggestion-name']/../..`;
 
-        return this.setValue("@searchFavourite", this.api.Keys.ENTER);
+        this.api.useXpath()
+            .waitForElementVisible(xpath)
+            .click(xpath)
+            .useCss();
+
+        return this;
     },
     enterName: function(name) {
         return this.setValue("@nameInput", name);
