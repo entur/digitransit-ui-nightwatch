@@ -15,6 +15,9 @@ var commands = {
         return this;
     },
     waitForItineraryLegOfType: function(mode) {
+      if(mode === "air") {
+        mode = "airplane";
+      }
       let selector = ".itinerary-instruction-column." + mode;
       return this.waitForElementVisible(selector);
     }
