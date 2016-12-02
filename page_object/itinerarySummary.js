@@ -15,7 +15,8 @@ var commands = {
 module.exports = {
     commands: [commands],
     elements: {
-        // The DOM is too loose, n-child or first-of-type does not work here.
-        firstItinerarySummaryRow: "div.search-result.Feature"
+        // first-child returns only one out of 4 elements.
+        // the :first-child pseudo-class represents the very first child of its parent
+        firstItinerarySummaryRow: "div.itinerary-summary-row:first-child"
     }
 };

@@ -39,7 +39,13 @@ var searchCommands = {
     },
 
     chooseSuggestedDestination: function(destination) {
-        let xpath = `//input[@id='search-destination' and @value='${destination}']`;
+
+      const index = destination.indexOf(',');
+      if (index > -1) {
+        destination = destination.substring(0, index);
+      }
+
+        let xpath = `//*[@id='search-destination']/..//p[contains(node(), '${destination}')]`;
 
         this.api.useXpath()
             .waitForElementVisible(xpath)
@@ -48,7 +54,7 @@ var searchCommands = {
         return this;
     },
     chooseSuggestedOrigin: function(origin) {
-        let xpath = `//input[@id='search-origin' and @value='${origin}']`;
+        let xpath = `//*[@id='search-origin']/..//p[contains(node(), '${origin}')][1]`;
 
         this.api.useXpath()
             .waitForElementVisible(xpath)
