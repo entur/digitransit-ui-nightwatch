@@ -49,8 +49,13 @@ var commands = {
         return this.assert.containsText("@favouriteLocationName", favouriteName);
     },
     verifyFavouriteInSearchResult: function(favouriteName) {
-        this.api.useXpath();
-        this.waitForElementPresent("//*/li[@class=\"react-autowhatever__item\"]/span[text()=\"" + favouriteName + "\"]");
+        let xpath = `//*[@id='search-destination']/..//*[@class='suggestion-name' and contains(node(), '${favouriteName}')]`
+
+        this.api.useXpath()
+            .waitForElementVisible(xpath)
+            .click(xpath)
+            .useCss();
+
         this.api.useCss();
     }
 }
