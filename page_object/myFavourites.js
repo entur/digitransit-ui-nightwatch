@@ -13,7 +13,7 @@ var commands = {
     enterAddress: function(addressSearch) {
         this.waitForElementVisible("@addressPlaceholdeNoSelect");
         this.click("@addressPlaceholdeNoSelect");
-        this.waitForElementVisible("@searchFavourite");
+        this.waitForElementPresent("@searchFavourite", 2000);
         this.setValue("@searchFavourite", addressSearch);
         this.api.pause(1000);
         return this.setValue("@searchFavourite", this.api.Keys.ENTER);
@@ -51,13 +51,13 @@ module.exports = {
     commands: [commands],
     elements: {
         favouritePaneSelect: {
-            selector: ".hover + .favourites"
+            selector: "li.favourites"
         },
         newFavouriteButtonContent: {
             selector: ".new-favourite-button-content"
         },
         addressPlaceholdeNoSelect: {
-            selector: ".address-placeholder "
+            selector: ".address-placeholder"
         },
         searchFavourite: {
             selector: "input[type='text']"
