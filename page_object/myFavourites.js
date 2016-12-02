@@ -11,11 +11,14 @@ var commands = {
         return this.click("@newFavouriteButtonContent");
     },
     enterAddress: function(addressSearch) {
-        this.waitForElementVisible("@addressPlaceholdeNoSelect");
-        this.click("@addressPlaceholdeNoSelect");
-        this.waitForElementPresent("@searchFavourite", 2000);
+        this.waitForElementVisible("@addressPlaceholderNoSelect");
+        this.click("@addressPlaceholderNoSelect");
+        this.waitForElementPresent("@searchFavourite");
         this.setValue("@searchFavourite", addressSearch);
+
+        // TODO: do not use sleep!
         this.api.pause(1000);
+
         return this.setValue("@searchFavourite", this.api.Keys.ENTER);
     },
     enterName: function(name) {
@@ -35,10 +38,10 @@ var commands = {
             .clickHomeIcon()
             .saveFavourite();
     },
-    verifyFirstHeader: function(header) {
+    verifyFavouriteAvailable: function(favouriteName) {
         this.openFavouritesPage();
-        this.waitForElementVisible("@favouriteLocationHeader");
-        return this.assert.containsText("@favouriteLocationHeader", header);
+        this.waitForElementVisible("@favouriteLocationName");
+        return this.assert.containsText("@favouriteLocationName", favouriteName);
     },
     verifyFavouriteInSearchResult: function(favouriteName) {
         this.api.useXpath();
@@ -56,11 +59,11 @@ module.exports = {
         newFavouriteButtonContent: {
             selector: ".new-favourite-button-content"
         },
-        addressPlaceholdeNoSelect: {
-            selector: ".address-placeholder"
+        addressPlaceholderNoSelect: {
+            selector: ".add-favourite-container__input-placeholder"
         },
         searchFavourite: {
-            selector: "input[type='text']"
+            selector: ".react-autowhatever__input"
         },
         nameInput: {
             selector: ".add-favourite-container__give-name input"
@@ -69,10 +72,10 @@ module.exports = {
             selector: ".favourite-icon-table-column:nth-of-type(2)"
         },
         saveButton: {
-            selector: ".add-favourite-container__save-button"
+            selector: ".add-favourite-container-button"
         },
-        favouriteLocationHeader: {
-            selector: ".favourite-location-header"
+        favouriteLocationName: {
+            selector: ".favourite-location-name"
         }
     }
 }

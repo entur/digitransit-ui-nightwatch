@@ -8,7 +8,7 @@ module.exports = {
         var myFavourites = browser.page.myFavourites();
         var favouriteName = "Home sweet home"
         myFavourites.saveHomeFavourite("Vestre vei 21, Asker", favouriteName);
-        myFavourites.verifyFirstHeader(favouriteName);
+        myFavourites.verifyFavouriteAvailable(favouriteName);
         browser.end();
     }
 }
