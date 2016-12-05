@@ -22,7 +22,7 @@
                 "path": "reports/screenshots/"
             },
             "desiredCapabilities": {
-                "browserName": "firefox",
+                "browserName": "chrome",
                 "javascriptEnabled": true,
                 "acceptSslCerts": true
             }
