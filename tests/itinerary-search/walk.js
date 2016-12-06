@@ -6,7 +6,7 @@ module.exports = {
         var browser = browser.url(browser.launch_url);
 
         var searchFields = browser.page.searchFields();
-        searchFields.itinerarySearch("Bryn stasjon", "Kværnerbyen");
+        searchFields.itinerarySearch("Adamstuen", "Kværnerbyen");
 
         var customizeSearch = browser.page.customizeSearch();
         customizeSearch.clickCanvasToggle();

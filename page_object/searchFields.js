@@ -27,14 +27,9 @@ var searchCommands = {
             .waitForElementVisible('@searchOrigin')
             .click('@searchOrigin');
 
-        // TODO: returns null value: this.api.getValue('@searchOrigin', function(result) {
+        this.clearValue('@searchOrigin');
 
-        for (let i = 0; i < 10; i++) {
-          // At the moment, the current way of emptying the input that works.
-          this.sendKeys('@searchOrigin', this.api.Keys.BACK_SPACE);
-        }
-
-        return this.waitForElementVisible('@searchResultCurrentLocation')
+        return this.waitForElementVisible('@searchResultCurrentLocation', 2000)
             .click('@searchResultCurrentLocation');
     },
 
