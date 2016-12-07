@@ -65,13 +65,23 @@ var searchCommands = {
         this.openFrontPageSearchBar()
             .waitForElementVisible('@search')
             .click('@search')
-            .waitForElementVisible('@searchInput')
-            .setValue('@searchInput', search);
+            .waitForElementVisible('@searchDestination')
+            .setValue('@searchDestination', search);
 
         this.api.pause(1000);
         // It does not necesarry select the correct suggested stop/route
-        this.setValue('@searchInput', this.api.Keys.ENTER);
+        this.setValue('@searchDestination', this.api.Keys.ENTER);
         return this;
+    },
+    setDepartmentDate: function(date) {
+        return this.waitForElementVisible('@date')
+            .click('@date')
+            .waitForElementVisible("option[value='" + date + "']")
+            .click("option[value='" + date + "']");
+    },
+    setDepartmentTime: function(time) {
+        return this.waitForElementVisible('@time')
+            .setValue('@time', time);
     },
     itinerarySearch: function(origin, destination) {
         return this.setOrigin(origin)
@@ -103,13 +113,16 @@ module.exports = {
             selector: "#react-autowhatever-suggest--item-0"
         },
         search: {
-            selector: "[tabindex=\"2\"]"
-        },
-        searchInput: {
-            selector: "#search"
+            selector: "#front-page-search-bar"
         },
         searchResultCurrentLocation: {
             selector: ".search-result.CurrentLocation"
+        },
+        date: {
+            selector: ".date"
+        },
+        time: {
+            selector: ".time-selector"
         }
     }
 };

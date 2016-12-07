@@ -14,6 +14,12 @@ var commands = {
             .useCss();
         return this;
     },
+    verifyPickupText: function(text) {
+        this.api.useXpath()
+            .waitForElementVisible(`//div[@class='dropoff-pickup-info']/span[text()='${text}']`)
+            .useCss();
+        return this;
+    },
     waitForItineraryLegOfType: function(mode) {
       if(mode === "air") {
         mode = "airplane";

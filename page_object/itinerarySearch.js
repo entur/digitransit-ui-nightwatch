@@ -21,6 +21,16 @@ var commands = {
             .verifyDestination(destination)
             .waitForItineraryLegOfType(mode);
     },
+    executeItinerarySearchWithDepartmentDateAndTime: function(origin, destination, departmentDate, departmentTime) {
+         return this.api.page.searchFields()
+            .itinerarySearch(origin, destination)
+            .api.page.itinerarySummary()
+            .api.page.searchFields()
+            .setDepartmentDate(departmentDate)
+            .setDepartmentTime(departmentTime)
+            .api.page.itinerarySummary()
+            .waitForFirstItineraryRow();
+    },
     executeItinerarySearchAndVerify: function(origin, destination) {
         return this.api.page.searchFields()
             .itinerarySearch(origin, destination)

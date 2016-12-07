@@ -17,10 +17,13 @@ module.exports = {
     commands: [commands],
     elements: {
         departure: {
-            selector: ".departure .route-detail-text"
+            selector: ".route-detail-text"
         },
         cardHeader: {
-            selector: ".card-header > span.h3"
+            /* TODO: Not exactly clear what this selector was meant to target,
+               this modification could be wrong. The previous was not working either.
+             */
+            selector: ".to-link > span:last-of-type"
         }
     }
 }
