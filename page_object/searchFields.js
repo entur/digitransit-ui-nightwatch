@@ -29,7 +29,7 @@ var searchCommands = {
 
         this.clearValue('@searchOrigin');
 
-        return this.waitForElementVisible('@searchResultCurrentLocation', 2000)
+        return this.waitForElementVisible('@searchResultCurrentLocation')
             .click('@searchResultCurrentLocation');
     },
 
