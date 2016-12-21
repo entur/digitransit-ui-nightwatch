@@ -3,12 +3,15 @@
   "version": "0.0.1",
   "description": "Runs browser tests specific for rutebanken",
   "licence": "MIT",
-  "keywords": "rutebanken, nightwatch",
+  "keywords": ["rutebanken", "nightwatch"],
+  "bin": {
+    "nightwatch": "./node_modules/nightwatch/bin/nightwatch"
+  },
   "scripts": {
-    "test": "./node_modules/nightwatch/bin/nightwatch --skiptags skip",
-    "test-smoke": "./node_modules/nightwatch/bin/nightwatch --tag smoke",
-    "beta": "./node_modules/nightwatch/bin/nightwatch --skiptags skip --env beta",
-    "beta-smoke": "./node_modules/nightwatch/bin/nightwatch --tag smoke --env beta"
+    "test": "nightwatch --skiptags skip",
+    "test-smoke": "nightwatch --tag smoke",
+    "beta": "nightwatch --skiptags skip --env beta",
+    "beta-smoke": "nightwatch --tag smoke --env beta"
   },
   "repository": {
     "type": "git",
