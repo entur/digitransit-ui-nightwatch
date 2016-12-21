@@ -33,6 +33,10 @@
         "local": {
             "launch_url": "http://localhost:8765/?mock"
         },
+        "all_local": {
+            "launch_url": "http://localhost:8080/?mock",
+            "selenium_host": "localhost"
+        },
         "phantomjs": {
             "desiredCapabilities": {
                 "browserName": "phantomjs",

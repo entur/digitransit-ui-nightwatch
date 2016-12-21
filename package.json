@@ -11,7 +11,8 @@
     "test": "nightwatch --skiptags skip",
     "test-smoke": "nightwatch --tag smoke",
     "beta": "nightwatch --skiptags skip --env beta",
-    "beta-smoke": "nightwatch --tag smoke --env beta"
+    "beta-smoke": "nightwatch --tag smoke --env beta",
+    "local": "nightwatch --skiptags skip --env all_local"
   },
   "repository": {
     "type": "git",
