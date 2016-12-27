@@ -40,3 +40,7 @@ reports/*
 
 # Webstorm
 .idea
+
+#Mac OS X
+.DS_Store
+
