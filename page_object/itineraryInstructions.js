@@ -1,12 +1,13 @@
-'use strict'
+'use strict';
 
-var commands = {
+const commands = {
     waitForFirstItineraryInstructionColumn: function() {
         return this.waitForElementVisible("@itineraryInstructionColumn");
     },
-    verifyOrigin: function(origin) {
-        return this.waitForElementVisible("@itineraryOrigin")
-            .assert.containsText("@itineraryOrigin", origin);
+    verifyOrigin: function(origin, mode) {
+      let selector = (mode == "air") ? "@itineraryOriginAir" : "@itineraryOrigin";
+      return this.waitForElementVisible(selector)
+            .assert.containsText(selector, origin);
     },
     verifyDestination: function(destination) {
         this.api.useXpath()
@@ -33,6 +34,7 @@ module.exports = {
     commands: [commands],
     elements: {
         itineraryInstructionColumn: ".itinerary-instruction-column",
-        itineraryOrigin: ".itinerary-leg-first-row:nth-of-type(1)"
+        itineraryOrigin: ".itinerary-leg-first-row:nth-of-type(1)",
+        itineraryOriginAir: ".airplane .itinerary-leg-first-row:nth-of-type(1)"
     }
 };

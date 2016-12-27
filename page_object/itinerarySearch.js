@@ -17,7 +17,7 @@ var commands = {
             .chooseFirstItinerarySuggestion()
             .api.page.itineraryInstructions()
             .waitForFirstItineraryInstructionColumn()
-            .verifyOrigin(origin)
+            .verifyOrigin(origin, mode)
             .verifyDestination(destination)
             .waitForItineraryLegOfType(mode);
     },
