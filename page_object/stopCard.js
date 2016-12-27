@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-var commands = {
+const commands = {
     clickAnyMarker: function() {
         return this.click("@anyStopMarker");
     },
@@ -10,8 +10,32 @@ var commands = {
     expectCardHeader: function(expected) {
         this.waitForElementVisible("@cardHeader");
         return this.assert.containsText("@cardHeader", expected);
-    }
-}
+    },
+  waitForRoutesVisible: function() {
+    return this.waitForElementVisible("@routes");
+  },
+  waitForRouteToFrom: function(text) {
+    this.api.useXpath()
+      .waitForElementVisible(`//div[@class='route cursor-pointer']//span[contains(text(), '${text}')]/..`)
+      .useCss();
+    return this;
+  },
+  waitForRoutesFromHere: function(text) {
+    return this.waitForRouteToFrom('Route from here')
+  },
+  clickRoutesFromHere: function() {
+    return this.click("@routeFromHere")
+  },
+  waitForRoutesToHere: function(text) {
+    return this.waitForRouteToFrom('Route to here')
+  },
+  clickRoutesToHere: function() {
+    return this.click("@routeToHere")
+  },
+  waitForRoutesToThis: function() {
+    return this.waitForElementVisible(".itinerary-summary-row");
+  }
+};
 
 module.exports = {
     commands: [commands],
@@ -24,6 +48,15 @@ module.exports = {
                this modification could be wrong. The previous was not working either.
              */
             selector: ".to-link > span:last-of-type"
-        }
+        },
+      routeFromHere: {
+        selector: ".route.cursor-pointer:nth-of-type(1)"
+      },
+      routeToHere: {
+        selector: ".route.cursor-pointer:nth-of-type(2)"
+      },
+      routes: {
+        selector: ".fpccontainer"
+      }
     }
-}
+};
