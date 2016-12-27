@@ -34,6 +34,8 @@ var commands = {
         return this;
     },
     disableAllModalitiesExcept: function(except) {
+        this.waitForElementVisible("@buttonBar");
+
         for (var i in modalities) {
             var modality = modalities[i];
             var selector = ".btn-bar > ." + modality;
@@ -68,5 +70,6 @@ module.exports = {
     elements: {
         canvasToggle: ".right-offcanvas-toggle",
         offCanvas: ".offcanvas",
+        buttonBar: ".btn-bar.mode-filter.no-select"
     }
 };
