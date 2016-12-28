@@ -9,7 +9,8 @@ const commands = {
       return this.waitForElementVisible(selector).click(selector);
     },
     waitForPopupPaneVisible: function() {
-        return this.waitForElementVisible("@popupPane");
+      // TODO this might fail because marker (outside window) is tried clicked
+      return this.waitForElementVisible("@popupPane");
     }
 };
 
