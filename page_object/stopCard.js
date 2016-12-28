@@ -32,9 +32,6 @@ const commands = {
   clickRoutesToHere: function() {
     return this.click("@routeToHere")
   },
-  waitForRoutesToThis: function() {
-    return this.waitForElementVisible(".itinerary-summary-row");
-  }
 };
 
 module.exports = {

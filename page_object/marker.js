@@ -2,12 +2,11 @@
 
 const commands = {
     clickAnyBusStopMarker: function() {
-        this.waitForElementVisible("@anyBusStopMarker");
-        return this.click("@anyBusStopMarker");
+      return this.waitForElementVisible("@anyBusStopMarker").click("@anyBusStopMarker");
     },
     clickAnyStopMarker: function(mode) {
-        this.waitForElementVisible(`.leaflet-marker-icon.'${mode}'`);
-        return this.click(".leaflet-marker-icon." + mode);
+      let selector = `.leaflet-marker-icon.${mode}`;
+      return this.waitForElementVisible(selector).click(selector);
     },
     waitForPopupPaneVisible: function() {
         return this.waitForElementVisible("@popupPane");
