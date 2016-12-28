@@ -20,7 +20,7 @@ module.exports = {
             selector: ".leaflet-marker-icon.bus"
         },
         popupPane: {
-            selector: ".leaflet-pane .leaflet-popup-pane"
+            selector: ".leaflet-popup.popup"
         }
     }
 };
