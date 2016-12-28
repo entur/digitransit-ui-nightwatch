@@ -10,7 +10,7 @@ module.exports = {
 
     let marker = browser.page.marker();
     marker.clickAnyStopMarker("bus")
-    .waitForPopupPaneVisible();
+      .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
         // TODO: Enable when route data is present for stops in map.
@@ -19,20 +19,27 @@ module.exports = {
     stopCard.waitForRoutesFromHere()
     .clickRoutesFromHere();
 
+    browser.end();
+  },
+  'Click any bus stop place marker in map and show routes to Helsfyr': function(browser) {
+    browser = browser.url(browser.launch_url);
+
+    browser.setGeolocation(59.866343, 10.489440); // nedre berger?
+    //browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.page.zoom().zoomIn(5);
+
+    let marker = browser.page.marker();
     marker.clickAnyStopMarker("bus")
       .waitForPopupPaneVisible();
 
+    let stopCard = browser.page.stopCard();
+
     stopCard.waitForRoutesVisible()
-    .waitForRoutesToHere()
-    .clickRoutesToHere();
-
-    // TODO refactor!
-    browser.waitForElementVisible('.field-link.from-link').click('.field-link.from-link');
-    browser.waitForElementVisible('.search-modal-container input')
-      .clearValue('.search-modal-container input')
-      .setValue('.search-modal-container input', "Helsfyr"); //"Grünerløkka" not working);
-
-    browser.waitForElementVisible('.Stop:first-of-type .icon').click('.Stop:first-of-type .icon');
+      .waitForRoutesToHere()
+      .clickRoutesToHere()
+      .clickFromLink()
+      .enterDestination("Helsfyr")
+      .clickFirstDestination();
 
     browser.page.itinerarySummary().waitForFirstItineraryRow();
     browser.end();
@@ -40,6 +47,7 @@ module.exports = {
   'Click any tram stop place marker in map and show its departures': function(browser) {
     browser = browser.url(browser.launch_url);
     browser.setGeolocation(59.9118796,10.750129); // jernbanetorget
+    browser.page.searchFields().useCurrentLocationInOrigin();
     browser.page.zoom().zoomIn(5);
 
     let marker = browser.page.marker();
@@ -50,20 +58,62 @@ module.exports = {
     stopCard.waitForRoutesFromHere()
       .clickRoutesFromHere();
 
+    browser.end();
+  },
+  'Click any tram stop place marker in map and show routes to Helsfyr': function(browser) {
+    browser = browser.url(browser.launch_url);
+    browser.setGeolocation(59.9118796,10.750129); // jernbanetorget
+    browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.page.zoom().zoomIn(5);
+
+    let marker = browser.page.marker();
     marker.clickAnyStopMarker("tram")
       .waitForPopupPaneVisible();
 
+    let stopCard = browser.page.stopCard();
     stopCard.waitForRoutesVisible()
       .waitForRoutesToHere()
-      .clickRoutesToHere();
+      .clickRoutesToHere()
+      .clickFromLink()
+      .enterDestination("Helsfyr")
+      .clickFirstDestination();
 
-    // TODO refactor!
-    browser.waitForElementVisible('.field-link.from-link').click('.field-link.from-link');
-    browser.waitForElementVisible('.search-modal-container input')
-      .clearValue('.search-modal-container input')
-      .setValue('.search-modal-container input', "Helsfyr"); //"Grünerløkka" not working);
+    browser.page.itinerarySummary().waitForFirstItineraryRow();
+    browser.end();
+  },
+  'Click any subway stop place marker in map and show its departures': function(browser) {
+    browser = browser.url(browser.launch_url);
+    browser.setGeolocation(59.9149676,10.4998034); // kolsås
+    browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.page.zoom().zoomIn(5);
 
-    browser.waitForElementVisible('.Stop:first-of-type .icon').click('.Stop:first-of-type .icon');
+    let marker = browser.page.marker();
+    marker.clickAnyStopMarker("subway")
+      .waitForPopupPaneVisible();
+
+    let stopCard = browser.page.stopCard();
+    stopCard.waitForRoutesFromHere()
+      .clickRoutesFromHere();
+
+    browser.end();
+  },
+  'Click any subway stop place marker in map and show routes to Helsfyr': function(browser) {
+    browser = browser.url(browser.launch_url);
+    browser.setGeolocation(59.9149676,10.4998034); // kolsås
+    browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.page.zoom().zoomIn(5);
+
+    let marker = browser.page.marker();
+    marker.clickAnyStopMarker("subway")
+      .waitForPopupPaneVisible();
+
+    let stopCard = browser.page.stopCard();
+    stopCard.waitForRoutesVisible()
+      .waitForRoutesToHere()
+      .clickRoutesToHere()
+      .clickFromLink()
+      .enterDestination("Helsfyr")
+      .clickFirstDestination();
 
     browser.page.itinerarySummary().waitForFirstItineraryRow();
     browser.end();

@@ -32,6 +32,19 @@ const commands = {
   clickRoutesToHere: function() {
     return this.click("@routeToHere")
   },
+
+  // near by
+  clickFromLink: function() {
+      return this.waitForElementVisible('@fromLink').click('@fromLink');
+  },
+  enterDestination: function (destination) {
+    return this.waitForElementVisible('@fromSearchInput')
+      .clearValue('@fromSearchInput')
+      .setValue('@fromSearchInput', destination);
+  },
+  clickFirstDestination: function () {
+    return this.waitForElementVisible('@fromFirstStop').click('@fromFirstStop');
+  }
 };
 
 module.exports = {
@@ -54,6 +67,17 @@ module.exports = {
       },
       routes: {
         selector: ".fpccontainer"
+      },
+
+      // near by
+      fromLink: {
+          selector: '.field-link.from-link'
+      },
+      fromSearchInput: {
+          selector: '.search-modal-container input'
+      },
+      fromFirstStop: {
+          selector: '.Stop:first-of-type .icon'
       }
     }
 };
