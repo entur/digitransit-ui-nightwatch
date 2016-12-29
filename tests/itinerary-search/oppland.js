@@ -1,4 +1,6 @@
-'use strict'
+'use strict';
+
+const { isBeta } = require('../util');
 
 module.exports = {
     tags: ["itinerary", "oppland"],
@@ -6,8 +8,10 @@ module.exports = {
       browser.url(browser.launch_url);
     },
     'From Oslo S to Lillehammer skysstasjon': function(browser) {
+        let departure = (isBeta()) ?  "Oslo S" : "Oslo Bussterminal"; // TODO remove when test server has equivalent data
+
         browser.page.itinerarySearch()
-          .executeItinerarySearchAndVerify("Oslo S", "Lillehammer skysstasjon")
+          .executeItinerarySearchAndVerify(departure, "Lillehammer skysstasjon")
           .api.end();
     },
     'Raufoss stasjon to Lillehammer skysstasjon': function(browser) {
