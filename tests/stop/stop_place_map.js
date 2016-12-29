@@ -117,5 +117,42 @@ module.exports = {
 
     browser.page.itinerarySummary().waitForFirstItineraryRow();
     browser.end();
+  },
+  'Click ferry place marker in map and show its departures': function(browser) {
+    browser = browser.url(browser.launch_url);
+    browser.setGeolocation(59.9037358,10.7458125); // Vippetangen
+    browser.page.zoom().zoomIn(5);
+    browser.page.searchFields().useCurrentLocationInOrigin();
+
+    let marker = browser.page.marker();
+    marker.clickAnyStopMarker("ferry")
+      .waitForPopupPaneVisible();
+
+    let stopCard = browser.page.stopCard();
+    stopCard.waitForRoutesFromHere()
+      .clickRoutesFromHere();
+
+    browser.end();
+  },
+  'Click ferry place marker in map and show routes to Denmark': function(browser) {
+    browser = browser.url(browser.launch_url);
+    browser.setGeolocation(59.9037358,10.7458125); // Vippetangen
+    browser.page.zoom().zoomIn(5);
+    browser.page.searchFields().useCurrentLocationInOrigin();
+
+    let marker = browser.page.marker();
+    marker.clickAnyStopMarker("ferry")
+      .waitForPopupPaneVisible();
+
+    let stopCard = browser.page.stopCard();
+    stopCard.waitForRoutesVisible()
+      .waitForRoutesToHere()
+      .clickRoutesToHere()
+      .clickFromLink()
+      .enterDestination("Kvæsthusbroen") //København
+      .clickFirstDestination();
+
+    browser.page.itinerarySummary().waitForFirstItineraryRow();
+    browser.end();
   }
 };
