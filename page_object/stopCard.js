@@ -14,6 +14,18 @@ const commands = {
   waitForRoutesVisible: function() {
     return this.waitForElementVisible("@routes");
   },
+  waitForRouteTitle: function(text) {
+    this.api.useXpath()
+      .waitForElementVisible(`//div[@class='card-header-wrapper']//span[@class='header-primary' and contains(text(), '${text}')]/..`)
+      .useCss();
+    return this;
+  },
+  waitForRoutesCard: function(time, text) {
+    this.api.useXpath()
+      .waitForElementVisible(`//div[@class='departure-list']//span[@class='time' and contains(text(), '${time}')]/..//span[@class='vehicle-number ferry' and contains(text(), '${text}')]/..`)
+      .useCss();
+    return this;
+  },
   waitForRouteToFrom: function(text) {
     this.api.useXpath()
       .waitForElementVisible(`//div[@class='route cursor-pointer']//span[contains(text(), '${text}')]/..`)
