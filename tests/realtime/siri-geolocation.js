@@ -1,4 +1,6 @@
-'use strict'
+'use strict';
+
+const { isBeta } = require('../util');
 
 module.exports = {
     '@disabled' : !isBeta(),
@@ -55,10 +57,3 @@ module.exports = {
         browser.end();
     }
 };
-
-function isBeta() {
-    if (typeof process !== 'undefined') {
-        return process.argv[process.argv.indexOf('--env') + 1] === 'beta'
-    }
-    return false;
-}
