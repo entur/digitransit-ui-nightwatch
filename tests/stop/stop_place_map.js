@@ -83,9 +83,9 @@ module.exports = {
   },
   'Click any subway stop place marker in map and show its departures': function(browser) {
     browser = browser.url(browser.launch_url);
-    browser.setGeolocation(59.9149676,10.4998034); // kolsås
-    browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.setGeolocation(59.9149676,10.5015000); // kolsås
     browser.page.zoom().zoomIn(5);
+    browser.page.searchFields().useCurrentLocationInOrigin();
 
     let marker = browser.page.marker();
     marker.clickAnyStopMarker("subway")
@@ -99,9 +99,9 @@ module.exports = {
   },
   'Click any subway stop place marker in map and show routes to Helsfyr': function(browser) {
     browser = browser.url(browser.launch_url);
-    browser.setGeolocation(59.9149676,10.4998034); // kolsås
-    browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.setGeolocation(59.9149676,10.5015000); // kolsås
     browser.page.zoom().zoomIn(5);
+    browser.page.searchFields().useCurrentLocationInOrigin();
 
     let marker = browser.page.marker();
     marker.clickAnyStopMarker("subway")
