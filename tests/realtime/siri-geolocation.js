@@ -1,6 +1,7 @@
 'use strict'
 
 module.exports = {
+    '@disabled' : !isBeta(),
     '@tags': ['realtime'],
     beforeEach : function(browser) {
         browser.url(browser.launch_url)
@@ -54,3 +55,10 @@ module.exports = {
         browser.end();
     }
 };
+
+function isBeta() {
+    if (typeof process !== 'undefined') {
+        return process.argv[process.argv.indexOf('--env') + 1] === 'beta'
+    }
+    return false;
+}
