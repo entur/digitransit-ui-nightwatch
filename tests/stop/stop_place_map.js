@@ -151,7 +151,7 @@ module.exports = {
       .waitForRoutesToHere()
       .clickRoutesToHere()
       .clickFromLink()
-      .enterDestination("Kvæsthusbroen") //København
+      .enterDestination("Frederikshavn Færgehavn") //Frederikshavn
       .clickFirstDestination();
 
     browser.page.itinerarySummary().waitForFirstItineraryRow();
