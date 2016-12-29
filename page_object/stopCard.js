@@ -20,9 +20,9 @@ const commands = {
       .useCss();
     return this;
   },
-  waitForRoutesCard: function(time, text) {
+  waitForRoutesCard: function(text) {
     this.api.useXpath()
-      .waitForElementVisible(`//div[@class='departure-list']//span[@class='time' and contains(text(), '${time}')]/..//span[@class='vehicle-number ferry' and contains(text(), '${text}')]/..`)
+      .waitForElementVisible(`//div[@class='departure-list']//span[@class='vehicle-number ferry' and contains(text(), '${text}')]/..`)
       .useCss();
     return this;
   },

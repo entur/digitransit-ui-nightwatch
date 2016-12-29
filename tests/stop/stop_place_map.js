@@ -131,7 +131,7 @@ module.exports = {
     let stopCard = browser.page.stopCard();
     stopCard.waitForRoutesFromHere()
       .waitForRouteTitle("Vippetangen")
-      .waitForRoutesCard("16:30", "København")
+      .waitForRoutesCard("København")
       .clickRoutesFromHere();
 
     browser.end();
