@@ -1,9 +1,7 @@
 'use strict';
 
-const isBeta = require('../util').isBeta();
-
 module.exports = {
-    '@disabled' : !isBeta,
+    '@disabled' : !isBeta(),
     '@tags': ['realtime'],
     beforeEach : function(browser) {
         browser.url(browser.launch_url)
@@ -57,3 +55,11 @@ module.exports = {
         browser.end();
     }
 };
+
+function isBeta() {
+  if (typeof process !== 'undefined' && typeof process.argv !== 'undefined') {
+    let _env = process.argv[process.argv.indexOf('--env') + 1];
+    return _env.indexOf('beta') !== -1;
+  }
+  return false;
+}
