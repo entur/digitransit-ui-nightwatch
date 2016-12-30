@@ -1,6 +1,6 @@
 'use strict';
 
-const isBeta = require('../util');
+const isBeta = require('../util').isBeta();
 
 module.exports = {
     tags: ["itinerary"],
@@ -8,7 +8,7 @@ module.exports = {
       browser.url(browser.launch_url);
     },
     'From Oslo S to Arvesens veg 4G, Hamar': function(browser) {
-        let departure = (isBeta()) ?  "Oslo S" : "Oslo Bussterminal"; // TODO remove when test server has equivalent data
+        let departure = isBeta ?  "Oslo S" : "Oslo Bussterminal"; // TODO remove when test server has equivalent data
 
         browser.page.itinerarySearch()
           .executeItinerarySearchWithModeAndVerify(departure, "Arvesens veg 4G, Hamar", "rail")

@@ -1,9 +1,9 @@
 'use strict';
 
-const isBeta = require('../util');
+const isBeta = require('../util').isBeta();
 
 module.exports = {
-    '@disabled' : !isBeta(),
+    '@disabled' : !isBeta,
     '@tags': ['realtime'],
     beforeEach : function(browser) {
         browser.url(browser.launch_url)
