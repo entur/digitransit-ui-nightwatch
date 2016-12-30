@@ -1,7 +1,7 @@
 'use strict';
 
 // Not really a page object, but it uses multiple page objects.
-const commands = {
+var commands = {
     executeItinerarySearchWithModeAndVerify: function(origin, destination, mode) {
         this.api.page.searchFields()
             .itinerarySearch(origin, destination);

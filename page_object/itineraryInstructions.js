@@ -1,6 +1,6 @@
 'use strict';
 
-const commands = {
+var commands = {
     waitForFirstItineraryInstructionColumn: function() {
         return this.waitForElementVisible("@itineraryInstructionColumn");
     },

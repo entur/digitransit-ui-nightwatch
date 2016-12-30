@@ -1,6 +1,6 @@
 'use strict';
 
-const commands = {
+var commands = {
     clickAnyMarker: function() {
         return this.click("@anyStopMarker");
     },

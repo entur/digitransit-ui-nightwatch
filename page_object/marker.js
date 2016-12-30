@@ -1,6 +1,6 @@
 'use strict';
 
-const commands = {
+var commands = {
     clickAnyBusStopMarker: function() {
       return this.waitForElementVisible("@anyBusStopMarker").click("@anyBusStopMarker");
     },
