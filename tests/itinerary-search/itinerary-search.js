@@ -1,17 +1,13 @@
 'use strict';
 
-const isBeta = require('../util').isBeta();
-
 module.exports = {
     tags: ["itinerary"],
     beforeEach: function(browser) {
       browser.url(browser.launch_url);
     },
     'From Oslo S to Arvesens veg 4G, Hamar': function(browser) {
-        let departure = isBeta ?  "Oslo S" : "Oslo Bussterminal"; // TODO remove when test server has equivalent data
-
         browser.page.itinerarySearch()
-          .executeItinerarySearchWithModeAndVerify(departure, "Arvesens veg 4G, Hamar", "rail")
+          .executeItinerarySearchWithModeAndVerify("Oslo S", "Arvesens veg 4G, Hamar", "rail")
           .api.end();
     },
     'From Sogstikollen 22B to Bjørvika': function(browser) {
