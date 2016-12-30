@@ -2,9 +2,7 @@
 
 // Not really a page object, but it uses multiple page objects.
 const commands = {
-    executeItinerarySearchWithModeAndVerify: function(origin, destination, mode, destinationName) {
-        if (typeof destinationName !== 'undefined') destinationName = destination;
-
+    executeItinerarySearchWithModeAndVerify: function(origin, destination, mode) {
         this.api.page.searchFields()
             .itinerarySearch(origin, destination);
 
@@ -20,7 +18,7 @@ const commands = {
             .api.page.itineraryInstructions()
             .waitForFirstItineraryInstructionColumn()
             .verifyOrigin(origin, mode)
-            .verifyDestination(destinationName)
+            .verifyDestination(destination)
             .waitForItineraryLegOfType(mode);
     },
     executeItinerarySearchWithDepartmentDateAndTime: function(origin, destination, departmentDate, departmentTime) {
@@ -33,9 +31,7 @@ const commands = {
             .api.page.itinerarySummary()
             .waitForFirstItineraryRow();
     },
-    executeItinerarySearchAndVerify: function(origin, destination, destinationName) {
-        if (typeof destinationName !== 'undefined') destinationName = destination;
-
+    executeItinerarySearchAndVerify: function(origin, destination) {
         return this.api.page.searchFields()
             .itinerarySearch(origin, destination)
             .api.page.itinerarySummary()
@@ -44,7 +40,7 @@ const commands = {
             .api.page.itineraryInstructions()
             .waitForFirstItineraryInstructionColumn()
             .verifyOrigin(origin)
-            .verifyDestination(destinationName);
+            .verifyDestination(destination);
     }
 };
 
