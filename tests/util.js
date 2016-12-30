@@ -1,3 +1,4 @@
+'use strict';
 
 function isBeta() {
   if (typeof process !== 'undefined' && typeof process.argv !== 'undefined') {
