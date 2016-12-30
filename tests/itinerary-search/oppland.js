@@ -1,6 +1,6 @@
 'use strict';
 
-const { isBeta } = require('../util');
+const isBeta = require('../util');
 
 module.exports = {
     tags: ["itinerary", "oppland"],
