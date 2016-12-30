@@ -41,7 +41,7 @@
         "phantomjs": {
             "desiredCapabilities": {
                 "browserName": "phantomjs",
-                "loglevel" : "ALL",
+                "webdriver-loglevel" : "DEBUG",
                 "javascriptEnabled": true,
                 "acceptSslCerts": true,
                 "phantomjs.binary.path": "/usr/bin/phantomjs"
