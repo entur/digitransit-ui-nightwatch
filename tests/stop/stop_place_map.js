@@ -145,7 +145,7 @@ module.exports = {
     let stopCard = browser.page.stopCard();
     stopCard.waitForRoutesFromHere()
       .waitForRouteTitle('Vippetangen')
-      .waitForRoutesCard('Oslo-')
+      .waitForRoutesCard('Oslo')
       .clickRoutesFromHere();
 
     browser.end();
