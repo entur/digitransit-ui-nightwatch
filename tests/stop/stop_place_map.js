@@ -9,7 +9,7 @@ module.exports = {
     browser.page.zoom().zoomIn(5);
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker("bus")
+    marker.clickAnyStopMarker('bus')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
@@ -29,7 +29,7 @@ module.exports = {
     browser.page.zoom().zoomIn(5);
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker("bus")
+    marker.clickAnyStopMarker('bus')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
@@ -38,8 +38,8 @@ module.exports = {
       .waitForRoutesToHere()
       .clickRoutesToHere()
       .clickFromLink()
-      .enterDestination("Helsfyr")
-      .clickFirstDestination();
+      .enterSearchInput('Helsfyr')
+      .clickFirstStop();
 
     browser.page.itinerarySummary().waitForFirstItineraryRow();
     browser.end();
@@ -51,7 +51,7 @@ module.exports = {
     browser.page.zoom().zoomIn(5);
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker("tram")
+    marker.clickAnyStopMarker('tram')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
@@ -67,7 +67,7 @@ module.exports = {
     browser.page.zoom().zoomIn(5);
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker("tram")
+    marker.clickAnyStopMarker('tram')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
@@ -75,8 +75,8 @@ module.exports = {
       .waitForRoutesToHere()
       .clickRoutesToHere()
       .clickFromLink()
-      .enterDestination("Helsfyr")
-      .clickFirstDestination();
+      .enterSearchInput('Helsfyr')
+      .clickFirstStop();
 
     browser.page.itinerarySummary().waitForFirstItineraryRow();
     browser.end();
@@ -88,7 +88,7 @@ module.exports = {
     browser.page.searchFields().useCurrentLocationInOrigin();
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker("subway")
+    marker.clickAnyStopMarker('subway')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
@@ -104,18 +104,32 @@ module.exports = {
     browser.page.searchFields().useCurrentLocationInOrigin();
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker("subway")
+    marker.clickAnyStopMarker('subway')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
+    let origin = 'Mortensrud';
+    let destination = 'Kolsås';
+
     stopCard.waitForRoutesVisible()
       .waitForRoutesToHere()
       .clickRoutesToHere()
       .clickFromLink()
-      .enterDestination("Helsfyr")
-      .clickFirstDestination();
+      .enterSearchInput(origin)
+      .clickFirstStop();
 
-    browser.page.itinerarySummary().waitForFirstItineraryRow();
+    browser.page.searchFields()
+      .setDepartmentTime('07.00');
+
+    browser.page.itinerarySummary()
+      .waitForFirstItineraryRow()
+      .chooseFirstItinerarySuggestion()
+      .api.page.itineraryInstructions()
+      .waitForFirstItineraryInstructionColumn()
+      //.waitForItineraryLegOfType('subway') - TODO add when data fixed
+      .verifyOrigin(origin)
+      .verifyDestination(destination);
+
     browser.end();
   },
   'Click ferry place marker in map and show its departures': function(browser) {
@@ -125,13 +139,13 @@ module.exports = {
     browser.page.searchFields().useCurrentLocationInOrigin();
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker("ferry")
+    marker.clickAnyStopMarker('ferry')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
     stopCard.waitForRoutesFromHere()
-      .waitForRouteTitle("Vippetangen")
-      .waitForRoutesCard("København")
+      .waitForRouteTitle('Vippetangen')
+      .waitForRoutesCard('Oslo-')
       .clickRoutesFromHere();
 
     browser.end();
@@ -143,18 +157,34 @@ module.exports = {
     browser.page.searchFields().useCurrentLocationInOrigin();
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker("ferry")
+    marker.clickAnyStopMarker('ferry')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
+    let origin = 'Frederikshavn Færgehavn';
+    let destination = 'Oslo Vippetangen';
+    let thisFriday = new Date(new Date().setDate(new Date().getDate() + (5 - new Date().getDay()) % 7)).toISOString().slice(0,10);
+
     stopCard.waitForRoutesVisible()
       .waitForRoutesToHere()
       .clickRoutesToHere()
       .clickFromLink()
-      .enterDestination("Frederikshavn Færgehavn") //Frederikshavn
-      .clickFirstDestination();
+      .enterSearchInput(origin)
+      .clickFirstStop();
 
-    browser.page.itinerarySummary().waitForFirstItineraryRow();
+    browser.page.searchFields()
+      .setDepartmentDate(thisFriday)
+      .setDepartmentTime('07.30');
+
+    browser.page.itinerarySummary()
+      .waitForFirstItineraryRow()
+      .chooseFirstItinerarySuggestion()
+      .api.page.itineraryInstructions()
+      .waitForFirstItineraryInstructionColumn()
+      .waitForItineraryLegOfType('ferry')
+      .verifyOrigin(origin)
+      .verifyDestination(destination);
+
     browser.end();
   }
 };

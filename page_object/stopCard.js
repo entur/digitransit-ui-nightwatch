@@ -49,12 +49,12 @@ var commands = {
   clickFromLink: function() {
       return this.waitForElementVisible('@fromLink').click('@fromLink');
   },
-  enterDestination: function (destination) {
+  enterSearchInput: function (destination) {
     return this.waitForElementVisible('@fromSearchInput')
       .clearValue('@fromSearchInput')
       .setValue('@fromSearchInput', destination);
   },
-  clickFirstDestination: function () {
+  clickFirstStop: function () {
     return this.waitForElementVisible('@fromFirstStop').click('@fromFirstStop');
   }
 };
