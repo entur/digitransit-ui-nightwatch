@@ -12,8 +12,7 @@
     "test-smoke": "nightwatch --tag smoke",
     "beta": "nightwatch --skiptags skip --env beta",
     "beta-smoke": "nightwatch --tag smoke --env beta",
-    "local" : "nightwatch --skiptags skip --env all_local",
-    "loca": "nightwatch --skiptags skip --env all_local --test tests/stop/stop_place_map.js"
+    "local" : "nightwatch --skiptags skip --env all_local"
   },
   "repository": {
     "type": "git",
