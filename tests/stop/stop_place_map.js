@@ -5,7 +5,7 @@ module.exports = {
   'Click any bus stop place marker in map and show its departures': function(browser) {
     browser = browser.url(browser.launch_url);
 
-    browser.setGeolocation(59.478866,9.2980653);
+    browser.setGeolocation(59.477566,9.2980653); // Hem, Sauherad
     browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
@@ -26,7 +26,7 @@ module.exports = {
   'Click any bus stop place marker in map and show routes to here': function(browser) {
     browser = browser.url(browser.launch_url);
 
-    browser.setGeolocation(59.478866,9.2980653);
+    browser.setGeolocation(59.477566,9.2980653);  // Hem, Sauherad
     browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
