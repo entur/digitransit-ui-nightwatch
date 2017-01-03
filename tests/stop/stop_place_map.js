@@ -5,8 +5,10 @@ module.exports = {
   'Click any bus stop place marker in map and show its departures': function(browser) {
     browser = browser.url(browser.launch_url);
 
-    browser.setGeolocation(59.866343, 10.489440); // nedre berger?
+    browser.setGeolocation(59.478866,9.2980653);
     browser.page.zoom().zoomIn(5);
+    browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.pause(1000);
 
     let marker = browser.page.marker();
     marker.clickAnyStopMarker('bus')
@@ -21,12 +23,13 @@ module.exports = {
 
     browser.end();
   },
-  'Click any bus stop place marker in map and show routes to Helsfyr': function(browser) {
+  'Click any bus stop place marker in map and show routes to here': function(browser) {
     browser = browser.url(browser.launch_url);
 
-    browser.setGeolocation(59.866343, 10.489440); // nedre berger?
-    //browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.setGeolocation(59.478866,9.2980653);
     browser.page.zoom().zoomIn(5);
+    browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.pause(1000);
 
     let marker = browser.page.marker();
     marker.clickAnyStopMarker('bus')
@@ -38,7 +41,7 @@ module.exports = {
       .waitForRoutesToHere()
       .clickRoutesToHere()
       .clickFromLink()
-      .enterSearchInput('Helsfyr')
+      .enterSearchInput('Rjukan')
       .clickFirstStop();
 
     browser.page.itinerarySummary().waitForFirstItineraryRow();
@@ -47,8 +50,9 @@ module.exports = {
   'Click any tram stop place marker in map and show its departures': function(browser) {
     browser = browser.url(browser.launch_url);
     browser.setGeolocation(59.9118796,10.750129); // jernbanetorget
-    browser.page.searchFields().useCurrentLocationInOrigin();
     browser.page.zoom().zoomIn(5);
+    browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.pause(1000);
 
     let marker = browser.page.marker();
     marker.clickAnyStopMarker('tram')
@@ -60,11 +64,12 @@ module.exports = {
 
     browser.end();
   },
-  'Click any tram stop place marker in map and show routes to Helsfyr': function(browser) {
+  'Click any tram stop place marker in map and show routes to here': function(browser) {
     browser = browser.url(browser.launch_url);
     browser.setGeolocation(59.9118796,10.750129); // jernbanetorget
-    browser.page.searchFields().useCurrentLocationInOrigin();
     browser.page.zoom().zoomIn(5);
+    browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.pause(1000);
 
     let marker = browser.page.marker();
     marker.clickAnyStopMarker('tram')
@@ -86,6 +91,7 @@ module.exports = {
     browser.setGeolocation(59.9149676,10.5015000); // kolsås
     browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.pause(1000);
 
     let marker = browser.page.marker();
     marker.clickAnyStopMarker('subway')
@@ -97,11 +103,12 @@ module.exports = {
 
     browser.end();
   },
-  'Click any subway stop place marker in map and show routes to Helsfyr': function(browser) {
+  'Click any subway stop place marker in map and show routes to here': function(browser) {
     browser = browser.url(browser.launch_url);
     browser.setGeolocation(59.9149676,10.5015000); // kolsås
     browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.pause(1000);
 
     let marker = browser.page.marker();
     marker.clickAnyStopMarker('subway')
@@ -137,6 +144,7 @@ module.exports = {
     browser.setGeolocation(59.9037358,10.7458125); // Vippetangen
     browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.pause(1000);
 
     let marker = browser.page.marker();
     marker.clickAnyStopMarker('ferry')
@@ -150,11 +158,12 @@ module.exports = {
 
     browser.end();
   },
-  'Click ferry place marker in map and show routes to Denmark': function(browser) {
+  'Click ferry place marker in map and show routes to here': function(browser) {
     browser = browser.url(browser.launch_url);
     browser.setGeolocation(59.9037358,10.7458125); // Vippetangen
     browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.pause(1000);
 
     let marker = browser.page.marker();
     marker.clickAnyStopMarker('ferry')

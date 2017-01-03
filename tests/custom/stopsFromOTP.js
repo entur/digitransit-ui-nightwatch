@@ -7,7 +7,7 @@ module.exports = {
     'Travel from Oslo Bussterminal, Oslo to Hauketo stasjon, Oslo': function(browser) {
         var browser = browser.url(browser.launch_url);
         browser.page.itinerarySearch()
-            .executeItinerarySearchWithModeAndVerify('Oslo Bussterminal, Oslo', 'Hauketo, Oslo', 'bus');
+            .executeItinerarySearchWithModeAndVerify('Oslo Bussterminal, Oslo', 'Hauketo stasjon, Oslo', 'bus');
         browser.end();
     },
     'Travel from Bodø stasjon, Bodø to Evenes kryss, Evenes': function(browser) {
