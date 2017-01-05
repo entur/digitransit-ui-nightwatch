@@ -16,7 +16,7 @@ var commands = {
   },
   waitForRouteTitle: function(text) {
     this.api.useXpath()
-      .waitForElementVisible(`//div[@class='card-header-wrapper']//span[@class='header-primary' and contains(text(), '${text}')]/..`)
+      .waitForElementVisible(`//div[@class='card-header-wrapper']//span[contains(text(), '${text}')]`)
       .useCss();
     return this;
   },
