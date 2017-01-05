@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  *
  * @param selector css selector
