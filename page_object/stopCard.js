@@ -20,6 +20,12 @@ var commands = {
       .useCss();
     return this;
   },
+  waitForRouteSubTitle: function(text) {
+    this.api.useXpath()
+      .waitForElementVisible(`//div[@class='card-header-wrapper']//div[@class='card-sub-header']//p[contains(text(), '${text}')]`)
+      .useCss();
+    return this;
+  },
   waitForRoutesCard: function(text) {
     this.api.useXpath()
       .waitForElementVisible(`//div[@class='departure-list']//span[@class='vehicle-number ferry' and contains(text(), '${text}')]/..`)
