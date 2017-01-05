@@ -8,6 +8,13 @@ var commands = {
       let selector = `.leaflet-marker-icon.${mode}`;
       return this.waitForElementVisible(selector).click(selector);
     },
+    clickFirstVisibleMarker: function(mode) {
+      let selector = `.leaflet-marker-icon.${mode}`;
+      this.clickFirstVisibleElement(selector, function (result) {
+        console.log(result)
+      });
+      return this;
+    },
     waitForPopupPaneVisible: function() {
       // TODO this might fail because marker (outside window) is tried clicked
       return this.waitForElementVisible("@popupPane");
