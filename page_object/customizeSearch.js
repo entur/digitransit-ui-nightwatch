@@ -62,7 +62,12 @@ var commands = {
                 callback(selector, false);
             }
         });
-    }
+    },
+    count: function(selector, callback) {
+        this.api.elements("css selector", selector, function(result) {
+            callback(result.value ? result.value.length : 0);
+        });
+    },
 };
 
 module.exports = {
