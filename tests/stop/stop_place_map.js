@@ -11,7 +11,7 @@ module.exports = {
     browser.pause(1000);
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker('bus')
+    marker.clickFirstVisibleMarker('bus')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
@@ -32,7 +32,7 @@ module.exports = {
     browser.pause(1000);
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker('bus')
+    marker.clickFirstVisibleMarker('bus')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
@@ -55,7 +55,7 @@ module.exports = {
     browser.pause(1000);
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker('tram')
+    marker.clickFirstVisibleMarker('tram')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
@@ -72,7 +72,7 @@ module.exports = {
     browser.pause(1000);
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker('tram')
+    marker.clickFirstVisibleMarker('tram')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
@@ -94,7 +94,7 @@ module.exports = {
     browser.pause(1000);
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker('subway')
+    marker.clickFirstVisibleMarker('subway')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
@@ -111,7 +111,7 @@ module.exports = {
     browser.pause(1000);
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker('subway')
+    marker.clickFirstVisibleMarker('subway')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
@@ -147,7 +147,7 @@ module.exports = {
     browser.pause(1000);
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker('ferry')
+    marker.clickFirstVisibleMarker('ferry')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
@@ -166,7 +166,7 @@ module.exports = {
     browser.pause(1000);
 
     let marker = browser.page.marker();
-    marker.clickAnyStopMarker('ferry')
+    marker.clickFirstVisibleMarker('ferry')
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
