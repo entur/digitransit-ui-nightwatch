@@ -25,7 +25,8 @@
                 "browserName": "chrome",
                 "javascriptEnabled": true,
                 "acceptSslCerts": true
-            }
+            },
+            "skip_testcases_on_fail": false
         },
         "beta": {
             "launch_url": "https://www.dit.no?mock",
