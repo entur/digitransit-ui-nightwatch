@@ -133,7 +133,7 @@ module.exports = {
       .chooseFirstItinerarySuggestion()
       .api.page.itineraryInstructions()
       .waitForFirstItineraryInstructionColumn()
-      //.waitForItineraryLegOfType('subway') - TODO add when data fixed
+      .waitForItineraryLegOfType('subway')
       .verifyOrigin(origin)
       .verifyDestination(destination);
 
