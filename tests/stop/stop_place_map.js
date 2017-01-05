@@ -49,7 +49,7 @@ module.exports = {
   },
   'Click any tram stop place marker in map and show its departures': function(browser) {
     browser = browser.url(browser.launch_url);
-    browser.setGeolocation(59.9118796,10.750129); // jernbanetorget
+    browser.setGeolocation(59.88849,10.77163); //  Jomfrubråten
     browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
@@ -66,7 +66,7 @@ module.exports = {
   },
   'Click any tram stop place marker in map and show routes to here': function(browser) {
     browser = browser.url(browser.launch_url);
-    browser.setGeolocation(59.9118796,10.750129); // jernbanetorget
+    browser.setGeolocation(59.88849,10.77163); // Jomfrubråten
     browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
@@ -76,14 +76,25 @@ module.exports = {
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
+    let origin = 'Rikshospitalet';
+    let destination = 'Jomfrubråten';
+
     stopCard.waitForRoutesVisible()
       .waitForRoutesToHere()
       .clickRoutesToHere()
       .clickFromLink()
-      .enterSearchInput('Helsfyr')
+      .enterSearchInput(origin)
       .clickFirstStop();
 
-    browser.page.itinerarySummary().waitForFirstItineraryRow();
+    browser.page.itinerarySummary()
+      .waitForFirstItineraryRow()
+      .chooseFirstItinerarySuggestion()
+      .api.page.itineraryInstructions()
+      .waitForFirstItineraryInstructionColumn()
+      .waitForItineraryLegOfType('tram')
+      .verifyOrigin(origin)
+      .verifyDestination(destination);
+
     browser.end();
   },
   'Click any subway stop place marker in map and show its departures': function(browser) {
