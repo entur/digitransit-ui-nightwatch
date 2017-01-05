@@ -195,5 +195,57 @@ module.exports = {
       .verifyDestination(destination);
 
     browser.end();
-  }
+  },
+  'Click park-and-ride place marker in map and show its departures': function(browser) {
+    browser = browser.url(browser.launch_url);
+    browser.setGeolocation(59.9486485,10.886911);
+    browser.page.zoom().zoomIn(5);
+    browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.pause(1000);
+
+    let destination = 'P+R Grorud Stasjon';
+    let marker = browser.page.marker();
+    marker.clickFirstVisibleMarker('park-and-ride')
+      .waitForPopupPaneVisible();
+
+    let stopCard = browser.page.stopCard();
+    stopCard.waitForRoutesFromHere()
+      .waitForRouteTitle('Park and ride')
+      .waitForRouteSubTitle(destination)
+      .clickRoutesFromHere();
+
+    browser.end();
+  },
+  'Click park-and-ride place marker in map and show routes to here': function(browser) {
+    browser = browser.url(browser.launch_url);
+    browser.setGeolocation(59.9486485,10.8875);
+    browser.page.zoom().zoomIn(5);
+    browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.pause(1000);
+
+    let marker = browser.page.marker();
+    marker.clickFirstVisibleMarker('park-and-ride')
+      .waitForPopupPaneVisible();
+
+    let stopCard = browser.page.stopCard();
+    let origin = 'Larvik';
+    let destination = 'P+R Grorud Stasjon';
+
+    stopCard.waitForRoutesVisible()
+      .waitForRoutesToHere()
+      .clickRoutesToHere()
+      .clickFromLink()
+      .enterSearchInput(origin)
+      .clickFirstStop();
+
+    browser.page.itinerarySummary()
+      .waitForFirstItineraryRow()
+      .chooseFirstItinerarySuggestion()
+      .api.page.itineraryInstructions()
+      .waitForFirstItineraryInstructionColumn()
+      .verifyOrigin(origin)
+      .verifyDestination(destination);
+
+    browser.end();
+  },
 };
