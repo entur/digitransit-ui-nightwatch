@@ -17,7 +17,7 @@ module.exports = {
 
         browser.end();
     },
-    'Trondheim has realtime data (AtB)': '@disabled' + function(browser) { // TODO add when working again
+    'Trondheim has realtime data (AtB)': function(browser) {
         var browser = browser.setGeolocation(63.4305, 10.3951);
 
         //Hack to reposition map to mocked geolocation
