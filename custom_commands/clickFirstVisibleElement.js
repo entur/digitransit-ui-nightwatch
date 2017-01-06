@@ -6,7 +6,7 @@
  * @param callback called when method is done executing with result of selenium result
  * @returns this (nightwatch)
  */
-exports.command = function(selector, callback) {
+exports.command = function (selector, callback) {
   this.execute(function (selector) {
     const nodes = window.document.querySelectorAll(selector);
 
