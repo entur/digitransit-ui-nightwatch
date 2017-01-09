@@ -12,7 +12,7 @@ module.exports = {
     var thisFriday = new Date(new Date().setDate(new Date().getDate() + (5 - new Date().getDay()) % 7)).toISOString().slice(0, 10);
     var browser = browser.url(browser.launch_url);
     browser.page.itinerarySearch()
-      .executeItinerarySearchWithDepartmentDateAndTime(origin, destination, thisFriday, '05:52')
+      .executeItinerarySearchWithDepartmentDateAndTime(origin, destination, thisFriday, '05:52am')
       .api.page.itinerarySummary()
       .waitForElementVisible('.pickup-dropoff')
       .chooseFirstItinerarySuggestion()
