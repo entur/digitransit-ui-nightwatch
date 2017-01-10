@@ -39,6 +39,31 @@
             "launch_url": "http://localhost:8080/?mock",
             "selenium_host": "localhost"
         },
+        "mobile": {
+            "desiredCapabilities": {
+                "chromeOptions": {
+                    "mobileEmulation": {
+                        "deviceName": "Google Nexus 7"
+                    },
+                    "args": [
+                        "window-size=800,1280"
+                    ]
+                }
+            }
+        },
+        "tablet": {
+            "desiredCapabilities": {
+                "deviceName": "iPad,landscape",
+                "chromeOptions": {
+                    "mobileEmulation": {
+                        "deviceMetrics": { "width": 1024, "height": 736, "pixelRatio": 3.0 }
+                    },
+                    "args": [
+                        "window-size=1024,736"
+                    ]
+                }
+            }
+        },
         "phantomjs": {
             "desiredCapabilities": {
                 "browserName": "phantomjs",

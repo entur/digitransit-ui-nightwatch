@@ -12,7 +12,9 @@
     "test-smoke": "nightwatch --tag smoke",
     "beta": "nightwatch --skiptags skip --env beta",
     "beta-smoke": "nightwatch --tag smoke --env beta",
-    "local" : "nightwatch --skiptags skip --env all_local"
+    "local" : "nightwatch --skiptags skip --env all_local",
+    "mobile" : "nightwatch --skiptags skip --env mobile",
+    "tablet" : "nightwatch --skiptags skip --env tablet"
   },
   "repository": {
     "type": "git",
