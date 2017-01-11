@@ -1,11 +1,15 @@
 'use strict';
 
+var isMobile = false;
+
 function doZoom(browser, level) {
   const getSize = function getSize(result) {
     if (result.value.width >= 900) {
+      isMobile = false;
       console.log("   - testing large device");
       browser.page.zoom().zoomIn(level);
     } else {
+      isMobile = true;
       console.log("   - testing small device - ignoring zoom");
     }
   };
@@ -20,6 +24,11 @@ module.exports = {
   beforeEach: function (browser) {
     browser.url(browser.launch_url);
     doZoom(browser, 5);
+  },
+  'Click any marker - isMobile setup': function (browser) {
+    browser.setGeolocation(59.477566, 9.2980653); // Hem, Sauherad
+    browser.page.searchFields().useCurrentLocationInOrigin();
+    browser.pause(1000);
   },
   'Click any bus stop place marker in map and show its departures': function (browser) {
     browser.setGeolocation(59.477566, 9.2980653); // Hem, Sauherad
@@ -50,7 +59,7 @@ module.exports = {
 
     let stopCard = browser.page.stopCard();
 
-    stopCard.waitForRoutesVisible()
+    stopCard.waitForRoutesVisible(isMobile)
       .waitForRoutesToHere()
       .clickRoutesToHere()
       .clickFromLink()
@@ -88,7 +97,7 @@ module.exports = {
     let origin = 'Rikshospitalet';
     let destination = 'Jomfrubråten';
 
-    stopCard.waitForRoutesVisible()
+    stopCard.waitForRoutesVisible(isMobile)
       .waitForRoutesToHere()
       .clickRoutesToHere()
       .clickFromLink()
@@ -99,7 +108,7 @@ module.exports = {
       .waitForFirstItineraryRow()
       .chooseFirstItinerarySuggestion()
       .api.page.itineraryInstructions()
-      .waitForFirstItineraryInstructionColumn()
+      .waitForFirstItineraryInstructionColumn(isMobile)
       .waitForItineraryLegOfType('tram')
       .verifyOrigin(origin)
       .verifyDestination(destination);
@@ -134,7 +143,7 @@ module.exports = {
     let origin = 'Mortensrud';
     let destination = 'Kolsås';
 
-    stopCard.waitForRoutesVisible()
+    stopCard.waitForRoutesVisible(isMobile)
       .waitForRoutesToHere()
       .clickRoutesToHere()
       .clickFromLink()
@@ -186,7 +195,7 @@ module.exports = {
     let destination = 'Oslo Vippetangen';
     let thisFriday = new Date(new Date().setDate(new Date().getDate() + (5 - new Date().getDay()) % 7)).toISOString().slice(0, 10);
 
-    stopCard.waitForRoutesVisible()
+    stopCard.waitForRoutesVisible(isMobile)
       .waitForRoutesToHere()
       .clickRoutesToHere()
       .clickFromLink()
@@ -239,7 +248,7 @@ module.exports = {
     let origin = 'Larvik';
     let destination = 'P+R Grorud Stasjon';
 
-    stopCard.waitForRoutesVisible()
+    stopCard.waitForRoutesVisible(isMobile)
       .waitForRoutesToHere()
       .clickRoutesToHere()
       .clickFromLink()
