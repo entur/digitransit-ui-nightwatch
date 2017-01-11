@@ -1,7 +1,7 @@
 'use strict';
 
 const commands = {
-  waitForFirstItineraryInstructionColumn: function (isMobile = false) {
+  waitForFirstItineraryInstructionColumn: function (isMobile) {
     let selector = (isMobile) ? "@itineraryInstructionColumnMobile" : "@itineraryInstructionColumn";
     return this.waitForElementVisible(selector);
   },

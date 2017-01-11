@@ -11,7 +11,7 @@ var commands = {
     this.waitForElementVisible("@cardHeader");
     return this.assert.containsText("@cardHeader", expected);
   },
-  waitForRoutesVisible: function (isMobile = false) {
+  waitForRoutesVisible: function (isMobile) {
     return isMobile ? this : this.waitForElementVisible("@routes");
   },
   waitForRouteTitle: function (text) {
