@@ -1,6 +1,9 @@
 'use strict';
 
 const commands = {
+  waitForFirstItineraryRowPresent: function () {
+    return this.waitForElementPresent("@firstItinerarySummaryRow", this.api.globals.itinerarySearchTimeout);
+  },
   waitForFirstItineraryRow: function () {
     return this.waitForElementVisible("@firstItinerarySummaryRow", this.api.globals.itinerarySearchTimeout);
   },

@@ -6,7 +6,7 @@ module.exports = {
     var browser = browser.url(browser.launch_url);
     var searchFields = browser.page.searchFields();
     searchFields.itinerarySearch("Hausmanns gate", "Malerhaugveien 28, Oslo");
-    browser.page.itinerarySummary().waitForFirstItineraryRow();
+    browser.page.itinerarySummary().waitForFirstItineraryRowPresent();
     browser.end();
   }
 }
