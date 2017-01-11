@@ -11,8 +11,8 @@ var commands = {
     this.waitForElementVisible("@cardHeader");
     return this.assert.containsText("@cardHeader", expected);
   },
-  waitForRoutesVisible: function () {
-    return this.waitForElementVisible("@routes");
+  waitForRoutesVisible: function (isMobile = false) {
+    return isMobile ? this : this.waitForElementVisible("@routes");
   },
   waitForRouteTitle: function (text) {
     this.api.useXpath()
@@ -92,7 +92,7 @@ module.exports = {
       selector: '.field-link.from-link'
     },
     fromSearchInput: {
-      selector: '.search-modal-container input'
+      selector: '.search-modal input'
     },
     fromFirstStop: {
       selector: '.Stop:first-of-type .icon'
