@@ -29,8 +29,7 @@
             "skip_testcases_on_fail": false
         },
         "beta": {
-            "launch_url": "https://www.dit.no?mock",
-            "disable_colors": true
+            "launch_url": "https://www.dit.no?mock"
         },
         "local": {
             "launch_url": "http://localhost:8765/?mock"
