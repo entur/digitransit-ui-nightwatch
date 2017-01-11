@@ -1,20 +1,27 @@
-'use strict'
+'use strict';
 
-var commands = {
-    waitForFirstItineraryRow: function() {
-        return this.waitForElementVisible("@firstItinerarySummaryRow", this.api.globals.itinerarySearchTimeout);
-    },
-    waitForItineraryRowOfType: function(modality) {
-        return this.waitForElementVisible(".line ." + modality + ":nth-of-type(1)", this.api.globals.itinerarySearchTimeout);
-    },
-    chooseFirstItinerarySuggestion: function() {
-        return this.click("@firstItinerarySummaryRow");
+const commands = {
+  waitForFirstItineraryRow: function () {
+    return this.waitForElementVisible("@firstItinerarySummaryRow", this.api.globals.itinerarySearchTimeout);
+  },
+  waitForItineraryRowOfType: function (modality) {
+    if (modality === "air") {
+      // TODO: mapping?
+      modality = "airplane";
     }
+
+    return this.waitForElementVisible(".line ." + modality, this.api.globals.itinerarySearchTimeout);
+  },
+  chooseFirstItinerarySuggestion: function () {
+    return this.click("@firstItinerarySummaryRow");
+  }
 };
 
 module.exports = {
-    commands: [commands],
-    elements: {
-        firstItinerarySummaryRow: ".itinerary-summary-row:nth-of-type(1)"
-    }
+  commands: [commands],
+  elements: {
+    // first-child returns only one out of 4 elements.
+    // the :first-child pseudo-class represents the very first child of its parent
+    firstItinerarySummaryRow: "div.itinerary-summary-row:first-child"
+  }
 };
