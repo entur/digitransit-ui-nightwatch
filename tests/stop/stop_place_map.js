@@ -1,12 +1,28 @@
 'use strict';
 
+function doZoom(browser, level) {
+  const getSize = function getSize(result) {
+    if (result.value.width >= 900) {
+      console.log("   - testing large device");
+      browser.page.zoom().zoomIn(level);
+    } else {
+      console.log("   - testing small device - ignoring zoom");
+    }
+  };
+
+  browser.waitForElementVisible("#app");
+  browser.getElementSize("#app", getSize);
+  browser.pause(1000);
+}
+
 module.exports = {
   tags: ['stops', 'map', 'geolocation'],
+  beforeEach: function (browser) {
+    browser.url(browser.launch_url);
+    doZoom(browser, 5);
+  },
   'Click any bus stop place marker in map and show its departures': function (browser) {
-    browser = browser.url(browser.launch_url);
-
     browser.setGeolocation(59.477566, 9.2980653); // Hem, Sauherad
-    browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -24,10 +40,7 @@ module.exports = {
     browser.end();
   },
   'Click any bus stop place marker in map and show routes to here': function (browser) {
-    browser = browser.url(browser.launch_url);
-
     browser.setGeolocation(59.477566, 9.2980653);  // Hem, Sauherad
-    browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -48,9 +61,7 @@ module.exports = {
     browser.end();
   },
   'Click any tram stop place marker in map and show its departures': function (browser) {
-    browser = browser.url(browser.launch_url);
     browser.setGeolocation(59.88849, 10.77163); //  Jomfrubråten
-    browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -65,9 +76,7 @@ module.exports = {
     browser.end();
   },
   'Click any tram stop place marker in map and show routes to here': function (browser) {
-    browser = browser.url(browser.launch_url);
     browser.setGeolocation(59.88849, 10.77163); // Jomfrubråten
-    browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -98,9 +107,7 @@ module.exports = {
     browser.end();
   },
   'Click any subway stop place marker in map and show its departures': function (browser) {
-    browser = browser.url(browser.launch_url);
     browser.setGeolocation(59.9149676, 10.5015000); // kolsås
-    browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -115,9 +122,7 @@ module.exports = {
     browser.end();
   },
   'Click any subway stop place marker in map and show routes to here': function (browser) {
-    browser = browser.url(browser.launch_url);
     browser.setGeolocation(59.9149676, 10.5015000); // kolsås
-    browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -151,9 +156,7 @@ module.exports = {
     browser.end();
   },
   'Click ferry place marker in map and show its departures': function (browser) {
-    browser = browser.url(browser.launch_url);
     browser.setGeolocation(59.9037358, 10.7458125); // Vippetangen
-    browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -170,9 +173,7 @@ module.exports = {
     browser.end();
   },
   'Click ferry place marker in map and show routes to here': function (browser) {
-    browser = browser.url(browser.launch_url);
     browser.setGeolocation(59.9037358, 10.7458125); // Vippetangen
-    browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -208,9 +209,7 @@ module.exports = {
     browser.end();
   },
   'Click park-and-ride place marker in map and show its departures': function (browser) {
-    browser = browser.url(browser.launch_url);
     browser.setGeolocation(59.9486485, 10.886911);
-    browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -228,9 +227,7 @@ module.exports = {
     browser.end();
   },
   'Click park-and-ride place marker in map and show routes to here': function (browser) {
-    browser = browser.url(browser.launch_url);
     browser.setGeolocation(59.9486485, 10.8875);
-    browser.page.zoom().zoomIn(5);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
