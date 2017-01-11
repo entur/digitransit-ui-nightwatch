@@ -157,7 +157,7 @@ module.exports = {
       .waitForFirstItineraryRow()
       .chooseFirstItinerarySuggestion()
       .api.page.itineraryInstructions()
-      .waitForFirstItineraryInstructionColumn()
+      .waitForFirstItineraryInstructionColumn(isMobile)
       .waitForItineraryLegOfType('subway')
       .verifyOrigin(origin)
       .verifyDestination(destination);
@@ -210,7 +210,7 @@ module.exports = {
       .waitForFirstItineraryRow()
       .chooseFirstItinerarySuggestion()
       .api.page.itineraryInstructions()
-      .waitForFirstItineraryInstructionColumn()
+      .waitForFirstItineraryInstructionColumn(isMobile)
       .waitForItineraryLegOfType('ferry')
       .verifyOrigin(origin)
       .verifyDestination(destination);
@@ -259,7 +259,7 @@ module.exports = {
       .waitForFirstItineraryRow()
       .chooseFirstItinerarySuggestion()
       .api.page.itineraryInstructions()
-      .waitForFirstItineraryInstructionColumn()
+      .waitForFirstItineraryInstructionColumn(isMobile)
       .verifyOrigin(origin)
       .verifyDestination(destination);
 
