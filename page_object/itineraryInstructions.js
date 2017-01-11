@@ -1,8 +1,9 @@
 'use strict';
 
 const commands = {
-  waitForFirstItineraryInstructionColumn: function () {
-    return this.waitForElementVisible("@itineraryInstructionColumn");
+  waitForFirstItineraryInstructionColumn: function (isMobile = false) {
+    let selector = (isMobile) ? "@itineraryInstructionColumnMobile" : "@itineraryInstructionColumn";
+    return this.waitForElementVisible(selector);
   },
   verifyOrigin: function (origin, mode) {
     let selector = (mode == "air") ? "@itineraryOriginAir" : "@itineraryOrigin";
@@ -34,6 +35,7 @@ module.exports = {
   commands: [commands],
   elements: {
     itineraryInstructionColumn: ".itinerary-instruction-column",
+    itineraryInstructionColumnMobile: ".itinerary-main",
     itineraryOrigin: ".itinerary-leg-first-row:nth-of-type(1)",
     itineraryOriginAir: ".airplane .itinerary-leg-first-row:nth-of-type(1)"
   }
