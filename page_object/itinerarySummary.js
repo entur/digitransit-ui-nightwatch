@@ -2,7 +2,7 @@
 
 const commands = {
   waitForFirstItineraryRow: function () {
-    return this.waitForElementPresent("@firstItinerarySummaryRow", this.api.globals.itinerarySearchTimeout);
+    return this.waitForElementVisible("@firstItinerarySummaryRow", this.api.globals.itinerarySearchTimeout);
   },
   waitForItineraryRowOfType: function (modality) {
     if (modality === "air") {
@@ -13,7 +13,7 @@ const commands = {
     return this.waitForElementVisible(".line ." + modality, this.api.globals.itinerarySearchTimeout);
   },
   chooseFirstItinerarySuggestion: function () {
-    return this.clickFirstVisibleElement('div.itinerary-summary-row:first-child');
+    return this.click("@firstItinerarySummaryRow");
   }
 };
 
