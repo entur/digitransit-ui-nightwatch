@@ -29,6 +29,7 @@ module.exports = {
     browser.setGeolocation(59.477566, 9.2980653); // Hem, Sauherad
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
+    browser.end();
   },
   'Click any bus stop place marker in map and show its departures': function (browser) {
     browser.setGeolocation(59.477566, 9.2980653); // Hem, Sauherad
