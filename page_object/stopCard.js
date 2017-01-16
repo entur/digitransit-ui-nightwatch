@@ -28,7 +28,7 @@ var commands = {
   },
   waitForRoutesCard: function (text) {
     this.api.useXpath()
-      .waitForElementVisible(`//div[@class='departure-list']//span[@class='vehicle-number ferry' and contains(text(), '${text}')]/..`)
+      .waitForElementVisible(`//div[@class='departure-list']//span[contains(@class, 'vehicle-number') and contains(@class, 'ferry') and contains(text(), '${text}')]/..`)
       .useCss();
     return this;
   },
