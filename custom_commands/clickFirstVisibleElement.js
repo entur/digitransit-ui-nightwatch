@@ -24,7 +24,7 @@ exports.command = function (selector, callback) {
     }
     return 0;
   }, [selector], function (result) {
-    console.log(result.state)
+    callback(result);
   });
   return this;
 };
