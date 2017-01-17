@@ -24,6 +24,7 @@ var commands = {
         this.api.pause(5000);
       }
     });
+    return this;
   },
   waitForPopupPaneVisible: function () {
     return this.waitForElementVisible("@popupPane");
