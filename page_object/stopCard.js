@@ -48,12 +48,41 @@ var commands = {
     return this.waitForRouteToFrom('Route to here')
   },
   clickRoutesToHere: function () {
-    return this.click("@routeToHere")
+    let selector = '.route.cursor-pointer:nth-of-type(2)';
+    this.waitForUpdateOfDOM(selector);
+    let api = this.api;
+    this.clickFirstVisibleElement(selector, function (result) {
+      if (result.state !== 'success') {
+        console.log('   - ' + result.state);
+        api.click('@routeToHere'); // fallback click to use api
+      }
+    });
+    return this
   },
 
   // near by
   clickFromLink: function () {
-    return this.waitForElementVisible('@fromLink').click('@fromLink');
+    let selector = '.field-link.from-link';
+    this.waitForUpdateOfDOM(selector);
+    let api = this.api;
+    this.clickFirstVisibleElement(selector, function (result) {
+      if (result.state !== 'success') {
+        console.log('   - ' + result.state);
+        api.click('@fromLink'); // fallback click to use api
+      }
+    });
+    return this
+  },
+  waitForUpdateOfDOM: function (selector, limit = 1, pause = 1000) {
+    this.api.pause(pause);
+    let api = this.api;
+    this.api.page.customizeSearch().count(selector, (count) => {
+      if (count < limit ) {
+        console.log('   - Less than ' + limit + ' of ' + selector + ' found, waiting');
+        api.pause(pause);
+      }
+    });
+    return this
   },
   enterSearchInput: function (destination) {
     return this.waitForElementVisible('@fromSearchInput')
