@@ -10,14 +10,22 @@ var commands = {
   },
   clickFirstVisibleMarker: function (mode) {
     let selector = `.leaflet-marker-icon.${mode}`;
-    this.api.pause(1000);
+    this.waitForMarkerUpdate(selector);
     this.clickFirstVisibleElement(selector, function (result) {
       console.log('   - ' + result.state)
     });
     return this;
   },
+  waitForMarkerUpdate: function (selector) {
+    this.api.pause(1000);
+    this.api.page.customizeSearch().count(selector, (count) => {
+      if (count > 10) {
+        console.log('   - Marker not updated yet (found ' + count+'), waiting');
+        this.api.pause(5000);
+      }
+    });
+  },
   waitForPopupPaneVisible: function () {
-    // TODO this might fail because marker (outside window) is tried clicked
     return this.waitForElementVisible("@popupPane");
   }
 };
