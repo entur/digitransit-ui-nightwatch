@@ -12,7 +12,7 @@ var commands = {
     let selector = `.leaflet-marker-icon.${mode}`;
     this.api.pause(1000);
     this.clickFirstVisibleElement(selector, function (result) {
-      console.log(result.state)
+      console.log('   - ' + result.state)
     });
     return this;
   },
