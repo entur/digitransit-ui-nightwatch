@@ -74,7 +74,7 @@ module.exports = {
   commands: [commands],
   elements: {
     canvasToggle: ".right-offcanvas-toggle",
-    offCanvas: ".offcanvas",
+    offCanvas: ".offcanvas-close",
     buttonBar: ".btn-bar.mode-filter.no-select"
   }
 };
