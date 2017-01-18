@@ -1,8 +1,8 @@
 'use strict';
 
 // Not really a page object, but it uses multiple page objects.
-var commands = {
-  executeItinerarySearchWithModeAndVerify: function (origin, destination, mode) {
+const commands = {
+  executeItinerarySearchWithModeAndVerify: function (origin, destination, mode, originName, destinationName) {
     this.api.page.searchFields()
       .itinerarySearch(origin, destination);
 
@@ -17,8 +17,8 @@ var commands = {
       .chooseFirstItinerarySuggestion()
       .api.page.itineraryInstructions()
       .waitForFirstItineraryInstructionColumn()
-      .verifyOrigin(origin, mode)
-      .verifyDestination(destination)
+      .verifyOrigin(originName || origin, mode)
+      .verifyDestination(destinationName || destination)
       .waitForItineraryLegOfType(mode);
   },
   executeItinerarySearchWithDepartmentDateAndTime: function (origin, destination, departmentDate, departmentTime) {
@@ -31,7 +31,7 @@ var commands = {
       .api.page.itinerarySummary()
       .waitForFirstItineraryRow();
   },
-  executeItinerarySearchAndVerify: function (origin, destination) {
+  executeItinerarySearchAndVerify: function (origin, destination, originName, destinationName) {
     return this.api.page.searchFields()
       .itinerarySearch(origin, destination)
       .api.page.itinerarySummary()
@@ -39,8 +39,8 @@ var commands = {
       .chooseFirstItinerarySuggestion()
       .api.page.itineraryInstructions()
       .waitForFirstItineraryInstructionColumn()
-      .verifyOrigin(origin)
-      .verifyDestination(destination);
+      .verifyOrigin(originName || origin)
+      .verifyDestination(destinationName || destination);
   }
 };
 
