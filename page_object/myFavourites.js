@@ -1,10 +1,17 @@
-'use strict'
+'use strict';
 
+const isMobile = require('../util/util').isMobile();
 
-var commands = {
+const commands = {
   openFavouritesPage: function () {
     this.waitForElementVisible("@favouritePaneSelect");
     return this.click("@favouritePaneSelect");
+  },
+  closeFavouritesPage: function () {
+    if (isMobile) {
+      this.waitForElementVisible("@closeIcon");
+      return this.click("@closeIcon");
+    }
   },
   addFavourite: function () {
     this.waitForElementVisible("@newFavouriteButtonContent");
@@ -41,7 +48,8 @@ var commands = {
       .enterAddress(address)
       .enterName(name)
       .clickHomeIcon()
-      .saveFavourite();
+      .saveFavourite()
+      .closeFavouritesPage()
   },
   verifyFavouriteAvailable: function (favouriteName) {
     this.openFavouritesPage();
@@ -84,6 +92,9 @@ module.exports = {
     },
     favouriteLocationName: {
       selector: ".favourite-location-name"
+    },
+    closeIcon: {
+      selector: ".close-icon"
     }
   }
-}
+};
