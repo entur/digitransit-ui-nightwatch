@@ -1,21 +1,9 @@
 'use strict';
 
-var isMobile = false;
+const isMobile = require('../util/util').isMobile();
 
 function doZoom(browser, level) {
-  const getSize = function getSize(result) {
-    if (result.value.width >= 900) {
-      isMobile = false;
-      console.log("   - testing large device");
-      browser.page.zoom().zoomIn(level);
-    } else {
-      isMobile = true;
-      console.log("   - testing small device - ignoring zoom");
-    }
-  };
-
-  browser.waitForElementVisible("#app");
-  browser.getElementSize("#app", getSize);
+  browser.page.zoom().zoomIn(level);
   browser.pause(1000);
 }
 
