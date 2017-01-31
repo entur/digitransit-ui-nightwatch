@@ -1,6 +1,6 @@
 'use strict';
 
-const isMobile = require('../util/util').isMobile();
+const isMobile = require('../../util/util').isMobile();
 
 function doZoom(browser, level) {
   browser.page.zoom().zoomIn(level);
