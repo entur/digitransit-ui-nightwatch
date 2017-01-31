@@ -24,6 +24,6 @@
   "author": "Cristoffer Solem <cristoffer.solem@gmail.com>",
   "homepage": "https://github.com/rutebanken/digitransit-ui-nightwatch",
   "dependencies": {
-    "nightwatch": "0.9.7"
+    "nightwatch": "^0.9.12"
   }
 }
