@@ -62,12 +62,13 @@ var commands = {
 
   // near by
   clickFromLink: function () {
-    let selector = '.field-link.from-link';
+    let selector = '.field-link .from-link';
     this.waitForUpdateOfDOM(selector);
     let api = this.api;
     this.clickFirstVisibleElement(selector, function (result) {
+      console.log('   - ' + result.state);
       if (result.state !== 'success') {
-        console.log('   - ' + result.state);
+        console.log('   - trying api.click()');
         api.click('@fromLink'); // fallback click to use api
       }
     });
@@ -118,7 +119,7 @@ module.exports = {
 
     // near by
     fromLink: {
-      selector: '.field-link.from-link'
+      selector: '.field-link .from-link'
     },
     fromSearchInput: {
       selector: '.search-modal input'

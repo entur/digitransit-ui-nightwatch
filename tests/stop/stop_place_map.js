@@ -13,12 +13,6 @@ module.exports = {
     browser.url(browser.launch_url);
     doZoom(browser, 5);
   },
-  'Click any marker - isMobile setup': function (browser) {
-    browser.setGeolocation(59.477566, 9.2980653); // Hem, Sauherad
-    browser.page.searchFields().useCurrentLocationInOrigin();
-    browser.pause(1000);
-    browser.end();
-  },
   'Click any bus stop place marker in map and show its departures': function (browser) {
     browser.setGeolocation(59.477566, 9.2980653); // Hem, Sauherad
     browser.page.searchFields().useCurrentLocationInOrigin();
@@ -59,7 +53,7 @@ module.exports = {
     browser.end();
   },
   'Click any tram stop place marker in map and show its departures': function (browser) {
-    browser.setGeolocation(59.88849, 10.77163); //  Jomfrubråten
+    browser.setGeolocation(59.9207935, 10.6362195); //  Lilleaker
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -74,7 +68,7 @@ module.exports = {
     browser.end();
   },
   'Click any tram stop place marker in map and show routes to here': function (browser) {
-    browser.setGeolocation(59.88849, 10.77163); // Jomfrubråten
+    browser.setGeolocation(59.9207935, 10.6362195); //  Lilleaker
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -83,8 +77,8 @@ module.exports = {
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
-    let origin = 'Rikshospitalet';
-    let destination = 'Jomfrubråten';
+    let origin = 'Bekkastua';
+    let destination = 'Lilleaker';
 
     stopCard.waitForRoutesVisible(isMobile)
       .waitForRoutesToHere()
