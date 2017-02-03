@@ -77,7 +77,7 @@ module.exports = {
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
-    let origin = 'Bekkastua';
+    let origin = 'Bekkestua';
     let destination = 'Lilleaker';
 
     stopCard.waitForRoutesVisible(isMobile)
