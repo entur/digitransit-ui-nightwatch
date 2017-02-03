@@ -9,8 +9,8 @@ const commands = {
   },
   closeFavouritesPage: function () {
     if (isMobile) {
-      this.waitForElementVisible("@closeIcon");
-      return this.click("@closeIcon");
+      this.waitForElementVisible("@closeSettings");
+      return this.click("@closeSettings");
     }
   },
   addFavourite: function () {
@@ -93,8 +93,8 @@ module.exports = {
     favouriteLocationName: {
       selector: ".favourite-location-name"
     },
-    closeIcon: {
-      selector: ".close-icon"
+    closeSettings: {
+      selector: ".offcanvas-close"
     }
   }
 };
