@@ -122,7 +122,7 @@ module.exports = {
       selector: ".date"
     },
     time: {
-      selector: ".time-selector"
+      selector: ".time-selectors input"
     }
   }
 };
