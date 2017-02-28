@@ -174,6 +174,7 @@ module.exports = {
     let stopCard = browser.page.stopCard();
     let origin = 'Rådhuset';
     let destination = 'Hovedøya';
+    let thisFriday = new Date(new Date().setDate(new Date().getDate() + (5 - new Date().getDay()) % 7)).toISOString().slice(0, 10);
 
     stopCard.waitForRoutesVisible(isMobile)
       .waitForRoutesToHere()
@@ -181,6 +182,10 @@ module.exports = {
       .clickFromLink()
       .enterSearchInput(origin)
       .clickFirstStop();
+
+    browser.page.searchFields()
+      .setDepartmentDate(thisFriday)
+      .setDepartmentTime('07.30am');
 
     browser.page.itinerarySummary()
       .clickFirstVisibleRow()
