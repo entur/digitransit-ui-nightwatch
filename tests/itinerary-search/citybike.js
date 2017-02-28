@@ -1,11 +1,12 @@
-'use strict'
+'use strict';
 
 module.exports = {
   '@disabled': !isWithinValideRentalPeriode(),
   tags: ['citybike'],
+  beforeEach: function (browser) {
+    browser.url(browser.launch_url);
+  },
   'CityBike in Trondheim': function (browser) {
-    var browser = browser.url(browser.launch_url);
-
     browser.page.itinerarySearch()
       .executeItinerarySearchWithModeAndVerify("Nidareid",
         "Gløshaugveien 4", "citybike")

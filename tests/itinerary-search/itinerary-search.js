@@ -46,4 +46,4 @@ module.exports = {
       .executeItinerarySearchAndVerify("Nakholmen", "Aker brygge")
       .api.end();
   }
-}
+};

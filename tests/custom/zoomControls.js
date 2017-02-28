@@ -4,12 +4,12 @@
 
 module.exports = {
   tags: ['zoom-controls', 'custom'],
+  beforeEach: function (browser) {
+    browser.url(browser.launch_url);
+  },
   'Zoom control buttons should be visible': function (browser) {
-    var browser = browser.url(browser.launch_url);
-
     browser.waitForElementVisible('.leaflet-control-zoom-in', 1000);
     browser.waitForElementVisible('.leaflet-control-zoom-out', 1000);
     browser.end();
   },
 };
-

@@ -1,18 +1,19 @@
-'use strict'
+'use strict';
 
 module.exports = {
   tags: ['walk'],
+  beforeEach: function (browser) {
+    browser.url(browser.launch_url);
+  },
   'Walk in the park': function (browser) {
-    var browser = browser.url(browser.launch_url);
-
-    var searchFields = browser.page.searchFields();
+    const searchFields = browser.page.searchFields();
     searchFields.itinerarySearch("Adamstuen", "Kværnerbyen");
 
-    var customizeSearch = browser.page.customizeSearch();
+    const customizeSearch = browser.page.customizeSearch();
     customizeSearch.clickCanvasToggle();
     customizeSearch.disableAllModalitiesExcept("");
 
-    var itinerarySummary = browser.page.itinerarySummary();
+    const itinerarySummary = browser.page.itinerarySummary();
     itinerarySummary.waitForItineraryRowOfType("walk");
 
     browser.end();
