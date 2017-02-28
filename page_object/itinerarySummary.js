@@ -17,7 +17,25 @@ const commands = {
   },
   chooseFirstItinerarySuggestion: function () {
     return this.click("@firstItinerarySummaryRow");
-  }
+  },
+  waitForUpdate: function (selector, limit) {
+    this.api.pause(1000);
+    this.api.page.customizeSearch().count(selector, (count) => {
+      if (count < limit) {
+        console.log('   - Search not updated yet (found ' + count + '), waiting');
+        this.api.pause(5000);
+      }
+    });
+    return this;
+  },
+  clickFirstVisibleRow: function () {
+    let selector = 'div.itinerary-summary-row';
+    this.waitForUpdate(selector, 1);
+    this.clickIt(selector + ':first-child', function (result) {
+      console.log('   - ' + result.state)
+    });
+    return this;
+  },
 };
 
 module.exports = {

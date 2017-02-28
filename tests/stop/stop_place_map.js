@@ -32,7 +32,7 @@ module.exports = {
     browser.end();
   },
   'Click any bus stop place marker in map and show routes to here': function (browser) {
-    browser.setGeolocation(59.477566, 9.2980653);  // Hem, Sauherad
+    browser.setGeolocation(59.477566, 9.2970653);  // Hem, Sauherad
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -49,10 +49,10 @@ module.exports = {
       .enterSearchInput('Rjukan')
       .clickFirstStop();
 
-    browser.page.itinerarySummary().waitForFirstItineraryRow();
+    browser.page.itinerarySummary().waitForFirstItineraryRowPresent();
     browser.end();
   },
-  'Click any tram stop place marker in map and show its departures': function (browser) {
+   'Click any tram stop place marker in map and show its departures': function (browser) {
     browser.setGeolocation(59.9207935, 10.6362195); //  Lilleaker
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
@@ -88,8 +88,7 @@ module.exports = {
       .clickFirstStop();
 
     browser.page.itinerarySummary()
-      .waitForFirstItineraryRow()
-      .chooseFirstItinerarySuggestion()
+      .clickFirstVisibleRow()
       .api.page.itineraryInstructions()
       .waitForFirstItineraryInstructionColumn(isMobile)
       .waitForItineraryLegOfType('tram')
@@ -137,8 +136,7 @@ module.exports = {
       .setDepartmentTime('07.00am');
 
     browser.page.itinerarySummary()
-      .waitForFirstItineraryRow()
-      .chooseFirstItinerarySuggestion()
+      .clickFirstVisibleRow()
       .api.page.itineraryInstructions()
       .waitForFirstItineraryInstructionColumn(isMobile)
       .waitForItineraryLegOfType('subway')
@@ -148,7 +146,7 @@ module.exports = {
     browser.end();
   },
   'Click ferry place marker in map and show its departures': function (browser) {
-    browser.setGeolocation(59.9037358, 10.7458125); // Vippetangen
+    browser.setGeolocation(59.8988921,10.7309575); // Hovedøya
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -158,14 +156,14 @@ module.exports = {
 
     let stopCard = browser.page.stopCard();
     stopCard.waitForRoutesFromHere()
-      .waitForRouteTitle('Vippetangen')
-      .waitForRoutesCard('Oslo')
+      .waitForRouteTitle('Hovedøya')
+      .waitForRoutesCard('Rådhuset')
       .clickRoutesFromHere();
 
     browser.end();
   },
   'Click ferry place marker in map and show routes to here': function (browser) {
-    browser.setGeolocation(59.9037358, 10.7458125); // Vippetangen
+    browser.setGeolocation(59.8988921,10.7309575); // Hovedøya
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -174,9 +172,8 @@ module.exports = {
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
-    let origin = 'Frederikshavn Færgehavn';
-    let destination = 'Oslo Vippetangen';
-    let thisFriday = new Date(new Date().setDate(new Date().getDate() + (5 - new Date().getDay()) % 7)).toISOString().slice(0, 10);
+    let origin = 'Rådhuset';
+    let destination = 'Hovedøya';
 
     stopCard.waitForRoutesVisible(isMobile)
       .waitForRoutesToHere()
@@ -185,13 +182,8 @@ module.exports = {
       .enterSearchInput(origin)
       .clickFirstStop();
 
-    browser.page.searchFields()
-      .setDepartmentDate(thisFriday)
-      .setDepartmentTime('07.30');
-
     browser.page.itinerarySummary()
-      .waitForFirstItineraryRow()
-      .chooseFirstItinerarySuggestion()
+      .clickFirstVisibleRow()
       .api.page.itineraryInstructions()
       .waitForFirstItineraryInstructionColumn(isMobile)
       .waitForItineraryLegOfType('ferry')
@@ -212,7 +204,7 @@ module.exports = {
 
     let stopCard = browser.page.stopCard();
     stopCard.waitForRoutesFromHere()
-      .waitForRouteTitle('Park and ride')
+      .waitForRouteTitle('Park and Ride')
       .waitForRouteSubTitle(destination)
       .clickRoutesFromHere();
 
@@ -239,8 +231,7 @@ module.exports = {
       .clickFirstStop();
 
     browser.page.itinerarySummary()
-      .waitForFirstItineraryRow()
-      .chooseFirstItinerarySuggestion()
+      .clickFirstVisibleRow()
       .api.page.itineraryInstructions()
       .waitForFirstItineraryInstructionColumn(isMobile)
       .verifyOrigin(origin)
