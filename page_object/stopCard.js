@@ -45,7 +45,7 @@ var commands = {
     return this.click("@routeFromHere")
   },
   waitForRoutesToHere: function (text) {
-    return this.waitForRouteToFrom('Route to here')
+    return this.waitForRouteToFrom('Route here')
   },
   clickRoutesToHere: function () {
     let selector = '.route.cursor-pointer:nth-of-type(2)';
