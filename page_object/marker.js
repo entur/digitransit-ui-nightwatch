@@ -19,7 +19,7 @@ var commands = {
   waitForMarkerUpdate: function (selector) {
     this.api.pause(1000);
     this.api.page.customizeSearch().count(selector, (count) => {
-      if (count > 10) {
+      if (count === 0 || count > 10) {
         console.log('   - Marker not updated yet (found ' + count+'), waiting');
         this.api.pause(5000);
       }
