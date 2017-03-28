@@ -47,7 +47,7 @@ module.exports = {
       .clickRoutesToHere()
       .clickFromLink()
       .enterSearchInput('Rjukan')
-      .clickFirstStop();
+      .clickFirstSearchResult();
 
     browser.page.itinerarySummary().waitForFirstItineraryRowPresent();
     browser.end();
@@ -85,7 +85,7 @@ module.exports = {
       .clickRoutesToHere()
       .clickFromLink()
       .enterSearchInput(origin)
-      .clickFirstStop();
+      .clickFirstSearchResult();
 
     browser.page.itinerarySummary()
       .clickFirstVisibleRow()
@@ -130,7 +130,7 @@ module.exports = {
       .clickRoutesToHere()
       .clickFromLink()
       .enterSearchInput(origin)
-      .clickFirstStop();
+      .clickFirstSearchResult();
 
     browser.page.searchFields()
       .setDepartmentTime('07.00am');
@@ -181,7 +181,7 @@ module.exports = {
       .clickRoutesToHere()
       .clickFromLink()
       .enterSearchInput(origin)
-      .clickFirstStop();
+      .clickFirstSearchResult();
 
     browser.page.searchFields()
       .setDepartmentDate(thisFriday)
@@ -233,7 +233,7 @@ module.exports = {
       .clickRoutesToHere()
       .clickFromLink()
       .enterSearchInput(origin)
-      .clickFirstStop();
+      .clickFirstSearchResult();
 
     browser.page.itinerarySummary()
       .clickFirstVisibleRow()

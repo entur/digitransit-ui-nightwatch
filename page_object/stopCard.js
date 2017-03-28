@@ -90,8 +90,8 @@ var commands = {
       .clearValue('@fromSearchInput')
       .setValue('@fromSearchInput', destination);
   },
-  clickFirstStop: function () {
-    return this.waitForElementVisible('@fromFirstStop').click('@fromFirstStop');
+  clickFirstSearchResult: function () {
+    return this.waitForElementVisible('@firstSearchResultInList').click('@firstSearchResultInList');
   }
 };
 
@@ -124,8 +124,8 @@ module.exports = {
     fromSearchInput: {
       selector: '.search-modal input'
     },
-    fromFirstStop: {
-      selector: '.Stop:first-of-type .icon'
-    }
+    firstSearchResultInList: {
+      selector: 'ul[role=listbox] li:first-child .search-result'
+    },
   }
 };
