@@ -6,7 +6,7 @@ const commands = {
     return this.waitForElementVisible(selector);
   },
   verifyOrigin: function (origin, mode) {
-    let selector = (mode == "air") ? "@itineraryOriginAir" : "@itineraryOrigin";
+    let selector = (mode === "air") ? "@itineraryOriginAir" : "@itineraryOrigin";
     return this.waitForElementVisible(selector)
       .assert.containsText(selector, origin);
   },
