@@ -11,7 +11,7 @@ var commands = {
   clickFirstVisibleMarker: function (mode) {
     let selector = `.leaflet-marker-icon.${mode}`;
     this.waitForMarkerUpdate(selector);
-    this.clickFirstVisibleElement(selector, function (result) {
+    this.clickCentralVisibleElement(selector, function (result) {
       console.log('   - ' + result.state)
     });
     return this;

@@ -51,7 +51,7 @@ var commands = {
     let selector = '.route.cursor-pointer:nth-of-type(2)';
     this.waitForUpdateOfDOM(selector);
     let api = this.api;
-    this.clickFirstVisibleElement(selector, function (result) {
+    this.clickCentralVisibleElement(selector, function (result) {
       if (result.state !== 'success') {
         console.log('   - ' + result.state);
         api.click('@routeToHere'); // fallback click to use api
@@ -65,7 +65,7 @@ var commands = {
     let selector = '.field-link .from-link';
     this.waitForUpdateOfDOM(selector);
     let api = this.api;
-    this.clickFirstVisibleElement(selector, function (result) {
+    this.clickCentralVisibleElement(selector, function (result) {
       console.log('   - ' + result.state);
       if (result.state !== 'success') {
         console.log('   - trying api.click()');
