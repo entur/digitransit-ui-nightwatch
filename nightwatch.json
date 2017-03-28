@@ -42,10 +42,10 @@
             "desiredCapabilities": {
                 "chromeOptions": {
                     "mobileEmulation": {
-                        "deviceName": "Google Nexus 7"
+                        "deviceName": "Google Nexus 5"
                     },
                     "args": [
-                        "window-size=800,1280"
+                        "window-size=500,800"
                     ]
                 }
             }
