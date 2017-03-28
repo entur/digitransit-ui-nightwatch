@@ -198,7 +198,7 @@ module.exports = {
     browser.end();
   },
   'Click park-and-ride place marker in map and show its departures': function (browser) {
-    browser.setGeolocation(59.9486485, 10.886911);
+    browser.setGeolocation(59.9487419, 10.8870387);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -216,7 +216,7 @@ module.exports = {
     browser.end();
   },
   'Click park-and-ride place marker in map and show routes to here': function (browser) {
-    browser.setGeolocation(59.9486485, 10.8875);
+    browser.setGeolocation(59.9487419, 10.8870387);
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
