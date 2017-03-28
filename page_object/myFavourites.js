@@ -94,7 +94,7 @@ module.exports = {
       selector: ".favourite-location-name"
     },
     closeSettings: {
-      selector: ".offcanvas-close"
+      selector: ".close-icon"
     }
   }
 };
