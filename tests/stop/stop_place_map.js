@@ -98,7 +98,7 @@ module.exports = {
     browser.end();
   },
   'Click any subway stop place marker in map and show its departures': function (browser) {
-    browser.setGeolocation(59.9149600, 10.5020000); // kolsås
+    browser.setGeolocation(59.9147982, 10.5010175); // kolsås
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -113,7 +113,7 @@ module.exports = {
     browser.end();
   },
   'Click any subway stop place marker in map and show routes to here': function (browser) {
-    browser.setGeolocation(59.9149600, 10.5020000); // kolsås
+    browser.setGeolocation(59.9147982, 10.5010175); // kolsås
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
