@@ -14,7 +14,7 @@ module.exports = {
     doZoom(browser, isMobile ? 2 : 5);
   },
   'Click any bus stop place marker in map and show its departures': function (browser) {
-    browser.setGeolocation(59.477566, 9.2980653); // Hem, Sauherad
+    browser.setGeolocation(59.4779034,9.2962688); // Hem, Sauherad
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
@@ -32,7 +32,7 @@ module.exports = {
     browser.end();
   },
   'Click any bus stop place marker in map and show routes to here': function (browser) {
-    browser.setGeolocation(59.477566, 9.2970653);  // Hem, Sauherad
+    browser.setGeolocation(59.4779034,9.2962688);  // Hem, Sauherad
     browser.page.searchFields().useCurrentLocationInOrigin();
     browser.pause(1000);
 
