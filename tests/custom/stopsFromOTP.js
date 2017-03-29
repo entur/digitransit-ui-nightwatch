@@ -14,7 +14,7 @@ module.exports = {
   },
   'Travel from Bodø stasjon, Bodø to Evenes kryss, Evenes': function (browser) {
     browser.page.itinerarySearch()
-      .executeItinerarySearchAndVerify('Bodø stasjon, Bodø', 'Evenes kryss, Evenes', undefined, 'Evenes kryss');
+      .executeItinerarySearchAndVerify('Bodø stasjon, Bodø', 'Evenes v.kr., Evenes', undefined, 'Evenes v.kr.');
     browser.end();
   }
 };
