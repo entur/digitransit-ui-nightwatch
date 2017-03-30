@@ -1,5 +1,7 @@
 'use strict';
 
+const isBrowser = require('../util/util').isBrowser;
+
 // Not really a page object, but it uses multiple page objects.
 const commands = {
   executeItinerarySearchWithModeAndVerify: function (origin, destination, mode, originName, destinationName) {
@@ -22,11 +24,14 @@ const commands = {
       .waitForItineraryLegOfType(mode);
   },
   executeItinerarySearchWithDepartmentDateAndTime: function (origin, destination, departmentDate, departmentTime) {
+    const clearTime = isBrowser(this.api, 'firefox');
+
     return this.api.page.searchFields()
       .itinerarySearch(origin, destination)
       .api.page.itinerarySummary()
       .api.page.searchFields()
       .setDepartmentDate(departmentDate)
+      .clearTime(clearTime)
       .setDepartmentTime(departmentTime)
       .api.page.itinerarySummary()
       .waitForFirstItineraryRow();

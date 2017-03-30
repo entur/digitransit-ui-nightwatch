@@ -1,4 +1,5 @@
-'use strict'
+'use strict';
+
 
 var searchCommands = {
   openFrontPageSearchBar: function () {
@@ -73,15 +74,24 @@ var searchCommands = {
     this.setValue('@searchDestination', this.api.Keys.ENTER);
     return this;
   },
+  clearTime: function (clearTime) {
+    if (clearTime) {
+      this.waitForElementVisible('@time').clearValue('@time')
+    }
+    return this;
+  },
   setDepartmentDate: function (date) {
-    return this.waitForElementVisible('@date')
+    this.waitForElementVisible('@date')
       .click('@date')
       .waitForElementVisible("option[value='" + date + "']")
-      .click("option[value='" + date + "']");
+      .click("select.date option[value='" + date + "']")
+      .setValue('select.date', this.api.Keys.ENTER);   // required for firefox to set value
+    this.api.pause(500);                               // required for firefox to set value
+    return this;
   },
   setDepartmentTime: function (time) {
     return this.waitForElementVisible('@time')
-      .setValue('@time', time);
+      .setValue('@time', [time, this.api.Keys.ENTER]); // required for firefox to set value
   },
   itinerarySearch: function (origin, destination) {
     return this.setOrigin(origin)
