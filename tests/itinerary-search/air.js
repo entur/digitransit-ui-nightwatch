@@ -1,14 +1,13 @@
 'use strict';
 
 module.exports = {
-  '@disabled': true, // TODO fix
   tags: ['air'],
   beforeEach: function (browser) {
     browser.url(browser.launch_url);
   },
   'Travel from Oslo Lufthavn to Tromsoe lufthavn Langnes': function (browser) {
     browser.page.itinerarySearch()
-      .executeItinerarySearchWithModeAndVerify("Oslo Lufthavn", "Tromsø lufthavn Langnes", "air");
+      .executeItinerarySearchWithModeAndVerify("Oslo Lufthavn", "Tromsø lufthavn", "air");
     browser.end();
   }
 };
