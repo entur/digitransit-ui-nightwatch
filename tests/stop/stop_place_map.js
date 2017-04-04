@@ -89,7 +89,7 @@ module.exports = {
 
     browser.page.customizeSearch()
       .clickCanvasToggle()
-      .disableAllModalitiesExcept("tram")
+      .disableAllModalitiesExcept('tram')
       .closeOffCanvas();
 
     browser.page.itinerarySummary()
@@ -136,6 +136,11 @@ module.exports = {
       .clickFromLink()
       .enterSearchInput(origin)
       .clickFirstSearchResult();
+
+    browser.page.customizeSearch()
+      .clickCanvasToggle()
+      .disableAllModalitiesExcept('subway')
+      .closeOffCanvas();
 
     browser.page.searchFields()
       .setDepartmentTime('07.00am');
@@ -191,6 +196,11 @@ module.exports = {
     browser.page.searchFields()
       .setDepartmentDate(thisFriday)
       .setDepartmentTime('07.30am');
+
+    browser.page.customizeSearch()
+      .clickCanvasToggle()
+      .disableAllModalitiesExcept('ferry')
+      .closeOffCanvas();
 
     browser.page.itinerarySummary()
       .clickFirstVisibleRow()
