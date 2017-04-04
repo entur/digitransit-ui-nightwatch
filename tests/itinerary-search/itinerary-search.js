@@ -15,7 +15,7 @@ module.exports = {
       .executeItinerarySearchAndVerify("Sogstikollen 22C, Frogn", "Bjørvika")
       .api.end();
   },
-  'Dyrløkke to Bjoervika': function (browser) {
+  'Dyrloekke to Bjoervika': function (browser) {
     browser.page.itinerarySearch()
       .executeItinerarySearchAndVerify("Dyrløkke", "Bjørvika")
       .api.end();
