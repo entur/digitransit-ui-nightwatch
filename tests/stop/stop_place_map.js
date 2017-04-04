@@ -87,6 +87,11 @@ module.exports = {
       .enterSearchInput(origin)
       .clickFirstSearchResult();
 
+    browser.page.customizeSearch()
+      .clickCanvasToggle()
+      .disableAllModalitiesExcept("tram")
+      .closeOffCanvas();
+
     browser.page.itinerarySummary()
       .clickFirstVisibleRow()
       .api.page.itineraryInstructions()
