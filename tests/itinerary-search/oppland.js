@@ -15,7 +15,7 @@ module.exports = {
       .executeItinerarySearchAndVerify("Raufoss stasjon", "Lillehammer skysstasjon")
       .api.end();
   },
-  'Gjøvik skysstasjon to Lillehammer skysstasjon': function (browser) {
+  'Gjoevik skysstasjon to Lillehammer skysstasjon': function (browser) {
     browser.page.itinerarySearch()
       .executeItinerarySearchAndVerify("Gjøvik skysstasjon", "Lillehammer skysstasjon")
       .api.end();

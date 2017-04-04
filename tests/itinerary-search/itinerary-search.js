@@ -10,12 +10,12 @@ module.exports = {
       .executeItinerarySearchWithModeAndVerify("Oslo S", "Arvesens veg 4G, Hamar", "rail")
       .api.end();
   },
-  'From Sogstikollen 22B to Bjørvika': function (browser) {
+  'From Sogstikollen 22B to Bjoervika': function (browser) {
     browser.page.itinerarySearch()
       .executeItinerarySearchAndVerify("Sogstikollen 22C, Frogn", "Bjørvika")
       .api.end();
   },
-  'Dyrløkke to Bjørvika': function (browser) {
+  'Dyrløkke to Bjoervika': function (browser) {
     browser.page.itinerarySearch()
       .executeItinerarySearchAndVerify("Dyrløkke", "Bjørvika")
       .api.end();
@@ -30,7 +30,7 @@ module.exports = {
       .executeItinerarySearchAndVerify("Hausmanns gate", "Ula nord")
       .api.end();
   },
-  'From Røros skole to Festplassen, Bergen': function (browser) {
+  'From Roeros skole to Festplassen, Bergen': function (browser) {
     browser.page.itinerarySearch()
       .executeItinerarySearchAndVerify("Røros skole", "Festplassen")
       .api.end();

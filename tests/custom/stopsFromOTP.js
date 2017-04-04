@@ -12,7 +12,7 @@ module.exports = {
       .executeItinerarySearchWithModeAndVerify('Oslo Bussterminal, Oslo', 'Hauketo stasjon, Oslo', 'bus', 'Oslo Bussterminal');
     browser.end();
   },
-  'Travel from Bodø stasjon, Bodø to Evenes kryss, Evenes': function (browser) {
+  'Travel from Bodoe stasjon, Bodoe to Evenes kryss, Evenes': function (browser) {
     browser.page.itinerarySearch()
       .executeItinerarySearchAndVerify('Bodø stasjon, Bodø', 'Evenes v.kr., Evenes', undefined, 'Evenes v.kr.');
     browser.end();
