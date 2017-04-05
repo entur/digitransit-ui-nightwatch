@@ -28,6 +28,12 @@ const commands = {
     }
     let selector = ".itinerary-instruction-column." + mode;
     return this.waitForElementVisible(selector);
+  },
+  verifyItineraryLegNotVisible: function (mode, leg = '') {
+    if (leg !== '') {
+      leg = `.${leg}`
+    }
+    return this.assert.cssClassNotPresent(`.itinerary-instruction-column${leg}`, mode);
   }
 };
 
