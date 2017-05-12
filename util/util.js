@@ -22,7 +22,7 @@ function isBrowser(api, name) {
  * Not this function is async and requires empty test to setup
  * checkout how it is used: tests/custom/pickupInformation.js
  */
-async function isSmallWindow(browser, callback) {
+function isSmallWindow(browser, callback) {
   browser.getElementSize("body", function getSize(result) {
     callback(result.value.width < 900, {width: result.value.width, height: result.value.height})
   });
