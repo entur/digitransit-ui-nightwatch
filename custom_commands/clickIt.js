@@ -11,7 +11,7 @@ exports.command = function (selector, callback) {
     window.document.querySelector(selector).click();
     return 0;
   }, [selector], function (result) {
-    callback(result);
+    if (callback) callback(result);
   });
   return this;
 };
