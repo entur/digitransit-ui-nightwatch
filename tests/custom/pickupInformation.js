@@ -4,10 +4,20 @@
  and more information about this is displayed when the ruler is collapsed.
  */
 
+let isSmall = false;
+const isSmallWindow = require('../../util/util').isSmallWindow;
+
 module.exports = {
   tags: ['pickup-information', 'custom'],
   beforeEach: function (browser) {
     browser.url(browser.launch_url);
+  },
+  'Setup small window': function (browser) {
+    isSmallWindow(browser, (small) => {
+      isSmall = small;
+    });
+    browser.pause(1000);
+    browser.end();
   },
   'Should show pickup information': function (browser) {
     const origin = 'Sørvær';
@@ -21,7 +31,7 @@ module.exports = {
       .waitForElementVisible('.pickup-dropoff')
       .chooseFirstItinerarySuggestion()
       .api.page.itineraryInstructions()
-      .waitForFirstItineraryInstructionColumn()
+      .waitForFirstItineraryInstructionColumn(isSmall)
       .verifyOrigin(origin)
       .verifyDestination(destination)
       .verifyPickupText('This route require booking from operator (www.flexx.no/tel.:03177)');
