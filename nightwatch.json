@@ -44,6 +44,9 @@
                 "browserName" : "safari",
                 "javascriptEnabled" : true,
                 "acceptSslCerts" : true
+            },
+            "options": {
+                "cleanSession": true
             }
         },
         "mobile": {
