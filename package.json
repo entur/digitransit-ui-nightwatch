@@ -14,7 +14,8 @@
     "beta-smoke": "nightwatch --tag smoke --env beta",
     "local" : "nightwatch --skiptags skip --env all_local",
     "mobile" : "nightwatch --skiptags skip --env mobile",
-    "tablet" : "nightwatch --skiptags skip --env tablet"
+    "tablet" : "nightwatch --skiptags skip --env tablet",
+    "safari" : "nightwatch --skiptags skip --env safari"
   },
   "repository": {
     "type": "git",

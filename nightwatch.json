@@ -38,6 +38,14 @@
             "launch_url": "http://localhost:8080/?mock",
             "selenium_host": "localhost"
         },
+        "safari": {
+            "selenium_host": "localhost",
+            "desiredCapabilities" : {
+                "browserName" : "safari",
+                "javascriptEnabled" : true,
+                "acceptSslCerts" : true
+            }
+        },
         "mobile": {
             "desiredCapabilities": {
                 "chromeOptions": {
