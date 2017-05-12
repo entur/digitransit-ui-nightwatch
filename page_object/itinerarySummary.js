@@ -1,5 +1,7 @@
 'use strict';
 
+const isBrowser = require('../util/util').isBrowser;
+
 const commands = {
   waitForFirstItineraryRowPresent: function () {
     return this.waitForElementPresent("@firstItinerarySummaryRow", this.api.globals.itinerarySearchTimeout);
@@ -16,6 +18,10 @@ const commands = {
     return this.waitForElementVisible(".line ." + modality, this.api.globals.itinerarySearchTimeout);
   },
   chooseFirstItinerarySuggestion: function () {
+    if (isBrowser(this.api, 'safari')) {
+      this.clickIt("div.itinerary-summary-row:first-child");
+      return this;
+    }
     return this.click("@firstItinerarySummaryRow");
   },
   waitForUpdate: function (selector, limit) {
