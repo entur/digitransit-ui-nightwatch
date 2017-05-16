@@ -9,8 +9,8 @@ module.exports = {
     browser.page.itinerarySearch()
       .executeItinerarySearchAndVerify('Dyrløkke', 'Bjørvika')
       .verifyItineraryLegNotVisible('walk');
-    browser.assert.urlContains(encodeURIComponent('NSR:StopPlace:11842'));
-    browser.assert.urlContains(encodeURIComponent('NSR:StopPlace:26045'));
+    browser.assert.urlContains(encodeURIComponent('Dyrløkke::NSR:StopPlace:'));
+    browser.assert.urlContains(encodeURIComponent('Bjørvika::NSR:StopPlace:'));
 
     browser.end();
   },
@@ -29,7 +29,7 @@ module.exports = {
     browser.page.itinerarySearch()
       .executeItinerarySearchAndVerify('Dyrløkke', 'Schweigaards gate 23')
       .verifyItineraryLegNotVisible('walk', 'start');
-    browser.assert.urlContains(encodeURIComponent('NSR:StopPlace:26045'));
+    browser.assert.urlContains(encodeURIComponent('Dyrløkke::NSR:StopPlace:'));
 
     browser.url(function (result) {
       if ((result.value.match(/StopPlace/g) || []).length > 1) {
@@ -41,9 +41,9 @@ module.exports = {
   },
   'addresse to stop - Karl Johans gate 1 to Lillestroem terminal': function (browser) {
     browser.page.itinerarySearch()
-      .executeItinerarySearchAndVerify('Karl Johans gate 1', 'Lillestrøm terminal')
+      .executeItinerarySearchAndVerify('Karl Johans gate 1, Oslo', 'Lillestrøm terminal')
       .verifyItineraryLegNotVisible('walk', 'end');
-    browser.assert.urlContains(encodeURIComponent('NSR:StopPlace:11476'));
+    browser.assert.urlContains(encodeURIComponent('NSR:StopPlace:'));
 
     browser.url(function (result) {
       if ((result.value.match(/StopPlace/g) || []).length > 1) {
