@@ -45,10 +45,10 @@ module.exports = {
   },
   'addresse to stop - Karl Johans gate 1 to Lillestroem terminal': function (browser) {
     browser.page.itinerarySearch()
-      .executeItinerarySearchAndVerify('Karl Johans gate 1, Oslo', 'Lillestrøm, Skedsmo', null, 'Lillestrøm')
+      .executeItinerarySearchAndVerify('Karl Johans gate 1, Oslo', 'Lillestrøm terminal, Skedsmo', null, 'Lillestrøm')
       .verifyItineraryLegNotVisible('walk', 'end');
     browser.assert.urlContains(encodeURIComponent('Karl Johans gate 1, Oslo::59'));
-    browser.assert.urlContains(encodeURIComponent('Lillestrøm, Skedsmo::NSR:StopPlace:'));
+    browser.assert.urlContains(encodeURIComponent('Lillestrøm terminal, Skedsmo::NSR:StopPlace:'));
 
     browser.url(function (result) {
       if ((result.value.match(/StopPlace/g) || []).length > 1) {
