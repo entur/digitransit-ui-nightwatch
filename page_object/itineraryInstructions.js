@@ -9,7 +9,13 @@ const commands = {
     let selector = (mode === "air") ? "@itineraryOriginAir" : "@itineraryOrigin";
     this.waitForElementVisible(selector);
     this.getText(selector, function(result) {
-      this.assert.equal(result.value.toLowerCase(), origin.toLowerCase())
+      let place1 = origin.toLowerCase();
+      let place2 = result.value.toLowerCase();
+      if (place1.length !== place2.length) {
+        place1 = this.page.searchFields().removeMunicipality(place1);
+        place2 = this.page.searchFields().removeMunicipality(place2);
+      }
+      this.assert.equal(place1, place2)
     });
     return this;
   },
