@@ -9,12 +9,12 @@ module.exports = {
   },
   'Travel from Oslo Bussterminal, Oslo to Hauketo stasjon, Oslo': function (browser) {
     browser.page.itinerarySearch()
-      .executeItinerarySearchWithModeAndVerify('Oslo Bussterminal, Oslo', 'Hauketo stasjon, Oslo', 'bus', 'Oslo Bussterminal');
+      .executeItinerarySearchWithModeAndVerify('Oslo Bussterminal, Oslo', 'Hauketo stasjon, Oslo', 'bus', 'Oslo Bussterminal', 'Hauketo stasjon');
     browser.end();
   },
   'Travel from Bodoe stasjon, Bodoe to Evenes kryss, Evenes': function (browser) {
     browser.page.itinerarySearch()
-      .executeItinerarySearchAndVerify('Bodø stasjon, Bodø', 'Evenes v.kr., Evenes', undefined, 'Evenes v.kr.');
+      .executeItinerarySearchAndVerify('Bodø stasjon, Bodø', 'Evenes kryss, Evenes', undefined, 'Evenes kryss');
     browser.end();
   }
 };
