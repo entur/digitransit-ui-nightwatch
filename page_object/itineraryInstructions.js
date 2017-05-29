@@ -7,8 +7,11 @@ const commands = {
   },
   verifyOrigin: function (origin, mode) {
     let selector = (mode === "air") ? "@itineraryOriginAir" : "@itineraryOrigin";
-    return this.waitForElementVisible(selector)
-      .assert.containsText(selector, origin);
+    this.waitForElementVisible(selector);
+    this.getText(selector, function(result) {
+      this.assert.equal(result.value.toLowerCase(), origin.toLowerCase())
+    });
+    return this;
   },
   verifyDestination: function (destination) {
     this.api.useXpath()
