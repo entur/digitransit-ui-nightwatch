@@ -1,7 +1,8 @@
 'use strict';
 
+const caseInsensitive = "translate(node(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')";
 
-var searchCommands = {
+const searchCommands = {
   openFrontPageSearchBar: function () {
     return this.waitForElementVisible('@frontPageSearchBar')
       .click('@frontPageSearchBar');
@@ -35,8 +36,8 @@ var searchCommands = {
   },
 
   chooseSuggestedDestination: function (destination) {
-    destination = this.removeMunicipality(destination);
-    let xpath = `//*[@id='search-destination']/..//p[contains(node(), '${destination}')]`;
+    destination = this.removeMunicipality(destination).toLowerCase();
+    let xpath = `//*[@id='search-destination']/..//p[contains(${caseInsensitive}, '${destination}')]`;
 
     this.api.useXpath()
       .waitForElementVisible(xpath)
@@ -52,8 +53,8 @@ var searchCommands = {
     return text;
   },
   chooseSuggestedOrigin: function (origin) {
-    origin = this.removeMunicipality(origin);
-    let xpath = `//*[@id='search-origin']/..//p[contains(node(), '${origin}')][1]`;
+    origin = this.removeMunicipality(origin).toLowerCase();
+    let xpath = `//*[@id='search-origin']/..//p[contains(${caseInsensitive}, '${origin}')][1]`;
 
     this.api.useXpath()
       .waitForElementVisible(xpath)
