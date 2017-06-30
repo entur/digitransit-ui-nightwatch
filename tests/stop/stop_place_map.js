@@ -240,7 +240,7 @@ module.exports = {
       .waitForPopupPaneVisible();
 
     let stopCard = browser.page.stopCard();
-    let origin = 'Larvik';
+    let origin = 'larvik, Vestfold';
     let destination = 'P+R Grorud Stasjon';
 
     stopCard.waitForRoutesVisible(isMobile)
