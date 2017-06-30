@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = {
+  '@disabled': true, // disabled temporarily since gtfsid is not default for search
   tags: ['itinerary'],
   beforeEach: function (browser) {
     browser.url(browser.launch_url);
