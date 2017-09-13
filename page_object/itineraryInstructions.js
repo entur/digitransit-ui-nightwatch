@@ -15,7 +15,7 @@ const commands = {
         place1 = this.page.searchFields().removeMunicipality(place1);
         place2 = this.page.searchFields().removeMunicipality(place2);
       }
-      this.assert.equal(place1, place2)
+      this.assert.containsText(place1, place2)
     });
     return this;
   },
