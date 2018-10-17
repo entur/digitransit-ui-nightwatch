@@ -1,5 +1,8 @@
 # digitransit-ui-nightwatch
 
+## Deprecated
+Deprecated. See https://github.com/entur/otp-travelsearch-qa instead.
+
 Run browser tests with nightwatch and selenium against the Rutebanken setup of digitransit-ui
 
 Install ```npm install```
